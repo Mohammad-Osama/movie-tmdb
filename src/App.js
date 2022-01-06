@@ -32,22 +32,22 @@ function App() {
   return (
     
     
-    <Container >
-        <Row >
-        {popular.map( (x)=>(  
-                <Col lg={3}  > 
-                     <Image src={`${api.imgUrl}${api.imgSize}${x.poster_path}`} >
-                            
-                     </Image>
-                     <h1 className="hidden"> hidden </h1>
-                  </Col>
-                    )   )
-        
-        }
-        </Row>
-
-
-    </Container>
+    <Row xs={1} md={2} className="g-4">
+            {popular.map( (x) => (
+              <Col lg={3} >
+                <Card>
+                  <Card.Img variant="top" src={`${api.imgUrl}${api.imgSize}${x.poster_path}`} />
+                  <Card.Body>
+                    <Card.Title>Card title</Card.Title>
+                    <Card.Text>
+                      This is a longer card with supporting text below as a natural
+                      lead-in to additional content. This content is a little bit longer.
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+</Row>
 
 
     
