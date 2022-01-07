@@ -5,6 +5,7 @@ import { useState , useEffect } from 'react';
  import { Container , Row , Col , Image , Card  , CardGroup } from 'react-bootstrap'
   // import { Grid, Image } from 'semantic-ui-react'
   //import 'semantic-ui-css/semantic.min.css'
+  import MovieThumb from './components/MovieThumb';
 
 function App() {
 
@@ -35,16 +36,16 @@ function App() {
     <Row xs={1} md={2} className="g-4">
             {popular.map( (x) => (
               <Col lg={3} >
-                <Card>
-                  <Card.Img variant="top" src={`${api.imgUrl}${api.imgSize}${x.poster_path}`} />
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a longer card with supporting text below as a natural
-                      lead-in to additional content. This content is a little bit longer.
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
+                <MovieThumb     key={x.id}
+                                poster_path={x.poster_path}
+                                title={x.title}
+                                overview={x.overview}
+                                vote_average={x.vote_average}
+                                
+
+                
+                
+                                                          />
               </Col>
             ))}
 </Row>

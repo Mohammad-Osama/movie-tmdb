@@ -55,7 +55,19 @@ export const getPopular = () =>
 
      // w92, w154, w185, w342, w500, w780, original
 
-     export const imgSize = 'w185' 
+     export const imgSize = 'w780' 
 
 //Sizes: w300, w780, w1280, original
 const BACKDROP_SIZE = 'w1280';
+
+
+/* https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
+https://api.themoviedb.org/3/movie/" */
+
+export const getGenre = () =>
+  fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`)
+    .then ((response)=>{
+        const recieved  = response.json() 
+        console.log ('genres-----> ', recieved )
+        return recieved 
+     })
