@@ -2,11 +2,13 @@
 import './App.css';
 import * as api from "./api"
 import { useState , useEffect } from 'react';
+import { createContext } from 'react';
  import { Container , Row , Col , Image , Card  , CardGroup } from 'react-bootstrap'
   // import { Grid, Image } from 'semantic-ui-react'
   //import 'semantic-ui-css/semantic.min.css'
-  import MovieThumb from './components/MovieThumb';
-
+  //  import MovieThumb from './components/MovieThumb';
+  import Home from './components/Home'
+  export  const PopularMovies = createContext([]);
 function App() {
 
   
@@ -22,33 +24,25 @@ function App() {
      setPopular(popular.results)
      console.log("popular---->"+popular)
            }
+           async function getGenre (){
+            const genre= await api.getGenre()
+    
+             console.log("getGenre---->"+JSON.stringify(genre))
+                   }
            
            useEffect(() => {
                 getPopular ()
                 console.log("popular---->"+popular)
+                getGenre ()
                 }, []);
 
                //   src={`${api.imgUrl}${api.imgSize}${x.poster_path}`}
-
+             
   return (
     
-    
-    <Row xs={1} md={2} className="g-4">
-            {popular.map( (x) => (
-              <Col lg={3} >
-                <MovieThumb     key={x.id}
-                                poster_path={x.poster_path}
-                                title={x.title}
-                                overview={x.overview}
-                                vote_average={x.vote_average}
-                                
-
-                
-                
-                                                          />
-              </Col>
-            ))}
-</Row>
+    <PopularMovies.Provider value={popular}>
+           <Home/>
+    </PopularMovies.Provider>
 
 
     
