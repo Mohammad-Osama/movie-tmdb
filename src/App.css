@@ -36,5 +36,11 @@
     transform: rotate(360deg);
   }
 }
-.hidden
-  { font-size: 0; }
+.card-text{
+
+  background-color: dimgray;
+}
+.card-title{
+
+  color:white;
+}

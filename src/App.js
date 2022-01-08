@@ -8,11 +8,13 @@ import { createContext } from 'react';
   //import 'semantic-ui-css/semantic.min.css'
   //  import MovieThumb from './components/MovieThumb';
   import Home from './components/Home'
-  export  const PopularMovies = createContext([]);
+  export  const PopularMovies   = createContext();
+  export  const   Genre  = createContext();
 function App() {
 
   
   const [popular , setPopular] = useState([])
+  const [genre , setGenre] = useState([])
 
   /* async function getBooks (){
     const allBooks= await BooksAPI.getAll()
@@ -26,22 +28,37 @@ function App() {
            }
            async function getGenre (){
             const genre= await api.getGenre()
-    
-             console.log("getGenre---->"+JSON.stringify(genre))
+                setGenre(genre)
+              // console.log("getGenre---->"+JSON.stringify(genre))
                    }
            
            useEffect(() => {
-                getPopular ()
-                console.log("popular---->"+popular)
-                getGenre ()
+                getPopular ()  
+             
+                return () => {
+                  
+                  setPopular([])              
+                };
                 }, []);
+                useEffect(() => {
+                 
+                 //  console.log("popular---->"+popular)
+                  getGenre ()
+                  return () => {
+                   
+                    setGenre([])              
+                  };
+                  }, []);
+
 
                //   src={`${api.imgUrl}${api.imgSize}${x.poster_path}`}
              
   return (
     
     <PopularMovies.Provider value={popular}>
-           <Home/>
+        <Genre.Provider value={genre}>
+            <Home key = {1} />
+        </Genre.Provider>
     </PopularMovies.Provider>
 
 
