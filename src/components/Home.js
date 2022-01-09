@@ -20,7 +20,7 @@ export default function Home() {
          let names=[]
         x.genre_ids.forEach( (movieGenre)=> {
             console.log("1st loop on x.genre ids ---->"+movieGenre)
-            genre.genres.forEach((ids)=> {
+            genre?.genres?.forEach((ids)=> {
               //  console.log("2nd loop on all ids ---->"+ids.name)
                 if (movieGenre===ids.id) {
                     names.push (ids.name)
@@ -40,10 +40,13 @@ export default function Home() {
                             {value.map( (x) => (
                             <Col lg={3} key={x.id} >
                                 <MovieThumb     
+                                                id={x.id}
                                                 poster_path={x.poster_path}
                                                 title={x.title}
                                                 overview={x.overview}
                                                 vote_average={x.vote_average}
+                                                vote_count={x.vote_count}
+                                                release_date={x.release_date}
                                                 genre = { findGenre(x)   }
                                                 
 

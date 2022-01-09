@@ -3,11 +3,17 @@ import './App.css';
 import * as api from "./api"
 import { useState , useEffect } from 'react';
 import { createContext } from 'react';
- import { Container , Row , Col , Image , Card  , CardGroup } from 'react-bootstrap'
+ import { Container , Row , Col , Image , Card  , CardGroup  } from 'react-bootstrap'
   // import { Grid, Image } from 'semantic-ui-react'
   //import 'semantic-ui-css/semantic.min.css'
   //  import MovieThumb from './components/MovieThumb';
   import Home from './components/Home'
+import NavBar from './components/NavBar';
+import { Routes , Route } from 'react-router-dom';
+import Movie from './components/Movie';
+
+
+
   export  const PopularMovies   = createContext();
   export  const   Genre  = createContext();
 function App() {
@@ -57,7 +63,15 @@ function App() {
     
     <PopularMovies.Provider value={popular}>
         <Genre.Provider value={genre}>
-            <Home key = {1} />
+        <Container className="app">
+
+            <NavBar/>
+            <Routes>
+              <Route exact path='/' element={<Home />} />
+              <Route exact path='/movie/:id' element={<Movie/>} />
+            </Routes>
+         
+          </Container>
         </Genre.Provider>
     </PopularMovies.Provider>
 
