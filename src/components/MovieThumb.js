@@ -10,7 +10,7 @@ export default function MovieThumb(props) {
    // console.log("props.genre===>"+props.genre)
     // console.log("props  to pass ===>"+JSON.stringify(props))
     return (
-        <Card border="dark" bg="dark" className="text-center">
+        <Card border="dark" bg="dark" className="text-center" style={{ color: 'red' }} >
                       <Link to={`/movie/${props.id}`}
                            
                                           >

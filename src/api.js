@@ -21,7 +21,7 @@ export const getLatest = () =>
   fetch(`${url}latest?api_key=${API_TMDB}&language=en-US`)
     .then ((response)=>{
         const recieved  = response.json() 
-        console.log ('recieved-----> ', recieved )
+        console.log ('latest-----> ', recieved )
         return recieved 
      })
     
@@ -51,6 +51,22 @@ export const getPopular = (page=1) =>
         const recieved  = response.json() 
         console.log ('Popular-----> ', recieved )
         return recieved 
+     })
+
+   export const getNowPlaying = (page=1) =>
+     fetch(`${url}now_playing?api_key=${API_TMDB}&language=en-US&page=${page}`)
+       .then ((response)=>{
+         const recieved  = response.json() 
+           console.log ('now_playing-----> ', recieved )
+           return recieved 
+     })
+
+     export const getUpcoming = (page=1) =>
+     fetch(`${url}upcoming?api_key=${API_TMDB}&language=en-US&page=${page}`)
+       .then ((response)=>{
+         const recieved  = response.json() 
+           console.log ('upcoming-----> ', recieved )
+           return recieved 
      })
 
 
