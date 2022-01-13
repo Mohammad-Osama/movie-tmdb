@@ -1,7 +1,7 @@
  // const dotenv = require('dotenv')
 // dotenv.config()
-const apiKey = "197129c263ec4ab60f28623d327d7eb2"
-
+const API_TMDB = process.env.REACT_APP_API_TMDB
+const API_IMDB = process.env.REACT_APP_API_IMDB
 //cofig api 
 
 // https://api.themoviedb.org/3/configuration?api_key=197129c263ec4ab60f28623d327d7eb2
@@ -18,10 +18,18 @@ const url = "https://api.themoviedb.org/3/movie/"
 
 
 export const getLatest = () =>
-  fetch(`${url}latest?api_key=${apiKey}&language=en-US`)
+  fetch(`${url}latest?api_key=${API_TMDB}&language=en-US`)
     .then ((response)=>{
         const recieved  = response.json() 
         console.log ('recieved-----> ', recieved )
+        return recieved 
+     })
+    
+     export const getTopRated = (page=1) =>
+  fetch(`${url}top_rated?api_key=${API_TMDB}&language=en-US&page=${page}`)
+    .then ((response)=>{
+        const recieved  = response.json() 
+        console.log ('toprated api-----> ', recieved )
         return recieved 
      })
 
@@ -37,11 +45,11 @@ export const getLatest = () =>
 getLatest(); */
 
 
-export const getPopular = () =>
-  fetch(`${url}popular?api_key=${apiKey}&language=en-US`)
+export const getPopular = (page=1) =>
+  fetch(`${url}popular?api_key=${API_TMDB}&language=en-US&page=${page}`)
     .then ((response)=>{
         const recieved  = response.json() 
-        console.log ('recieved-----> ', recieved )
+        console.log ('Popular-----> ', recieved )
         return recieved 
      })
 
@@ -55,7 +63,7 @@ export const getPopular = () =>
 
      // w92, w154, w185, w342, w500, w780, original
 
-     export const imgSize = 'w780' 
+     export const imgSize = 'w500' 
 
 //Sizes: w300, w780, w1280, original
 const BACKDROP_SIZE = 'w1280';
@@ -65,9 +73,27 @@ const BACKDROP_SIZE = 'w1280';
 https://api.themoviedb.org/3/movie/" */
 
 export const getGenre = () =>
-  fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`)
+  fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_TMDB}&language=en-US`)
     .then ((response)=>{
         const recieved  = response.json() 
         console.log ('genres-----> ', recieved )
+        return recieved 
+     })
+
+      // const urlMovie = "https://api.themoviedb.org/3/movie/"
+     export const getMovieInfo = (id) =>
+  fetch(`${url}${id}?api_key=${API_TMDB}&language=en-US`)
+    .then ((response)=>{
+        const recieved  = response.json() 
+        console.log ('MovieInfo-----> ', recieved )
+        return recieved 
+     })
+
+     
+     export const getExternalSites = (id) =>
+  fetch(`https://imdb-api.com/en/API/ExternalSites/${API_IMDB}/${id}`)
+    .then ((response)=>{
+        const recieved  = response.json() 
+        console.log ('Imdb info-----> ', recieved )
         return recieved 
      })

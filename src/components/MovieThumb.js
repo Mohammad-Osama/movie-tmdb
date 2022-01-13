@@ -7,16 +7,16 @@ import { Link } from 'react-router-dom';
 import { Container  , Button, Row , Col , Image , Card  , Badge , CardGroup } from 'react-bootstrap'
 
 export default function MovieThumb(props) {
-    console.log("props.genre===>"+props.genre)
-    console.log("props  to pass ===>"+JSON.stringify(props))
+   // console.log("props.genre===>"+props.genre)
+    // console.log("props  to pass ===>"+JSON.stringify(props))
     return (
         <Card border="dark" bg="dark" className="text-center">
                       <Link to={`/movie/${props.id}`}
-                            state ={{state :props}}
+                           
                                           >
                         <Card.Img variant="top" src={`${api.imgUrl}${api.imgSize}${props.poster_path}`} />
                       </Link>
-                  <Card.Body className="card-text" >
+                  <Card.Body className="cardBody" >
                     
                     <Card.Title className="card-title">{props.title}</Card.Title>
                    
@@ -25,7 +25,7 @@ export default function MovieThumb(props) {
                          
                     {props.genre.map((x)=>{
                          
-                         console.log("asdasdasdasd")
+                       //  console.log("asdasdasdasd")
                         return<Button variant="outline-light"  size="sm"key={x}> {x}</Button>
                     })}
                         

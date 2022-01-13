@@ -11,34 +11,44 @@ import { createContext } from 'react';
 import NavBar from './components/NavBar';
 import { Routes , Route } from 'react-router-dom';
 import Movie from './components/Movie';
+import {Client as Styletron} from 'styletron-engine-atomic';
+import {Provider as StyletronProvider} from 'styletron-react';
+import {LightTheme, BaseProvider, styled} from 'baseui';
+import {StatefulInput} from 'baseui/input';
 
 
-
-  export  const PopularMovies   = createContext();
-  export  const   Genre  = createContext();
+  /* export  const PopularMovies   = createContext();
+  export  const   Genre  = createContext(); */
 function App() {
 
   
-  const [popular , setPopular] = useState([])
-  const [genre , setGenre] = useState([])
+ // const [popular , setPopular] = useState([])
+ // const [genre , setGenre] = useState([])
 
   /* async function getBooks (){
     const allBooks= await BooksAPI.getAll()
     this.setState({books : allBooks})
           } */
 
-  async function getPopular (){
+  /* async function getPopular (){
     const popular= await api.getPopular()
      setPopular(popular.results)
      console.log("popular---->"+popular)
-           }
-           async function getGenre (){
+           } */
+
+
+
+         /*   async function getGenre (){
             const genre= await api.getGenre()
                 setGenre(genre)
               // console.log("getGenre---->"+JSON.stringify(genre))
-                   }
+                   } */
+
+
+
+
            
-           useEffect(() => {
+           /* useEffect(() => {
                 getPopular ()  
              
                 return () => {
@@ -54,15 +64,25 @@ function App() {
                    
                     setGenre([])              
                   };
-                  }, []);
+                  }, []); */
 
 
                //   src={`${api.imgUrl}${api.imgSize}${x.poster_path}`}
+               const engine = new Styletron();
+                const Centered = styled('div', {
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '100%',
+                });
              
   return (
     
-    <PopularMovies.Provider value={popular}>
-        <Genre.Provider value={genre}>
+  //  <PopularMovies.Provider value={popular}>
+    //    <Genre.Provider value={genre}>
+    <StyletronProvider value={engine}>
+    <BaseProvider theme={LightTheme}>
+      <Centered>
         <Container className="app">
 
             <NavBar/>
@@ -72,8 +92,11 @@ function App() {
             </Routes>
          
           </Container>
-        </Genre.Provider>
-    </PopularMovies.Provider>
+          </Centered>
+      </BaseProvider>
+    </StyletronProvider>
+       // </Genre.Provider>
+   // </PopularMovies.Provider>
 
 
     

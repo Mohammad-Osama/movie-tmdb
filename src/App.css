@@ -18,8 +18,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items:flex-end;
+  justify-content:flex-end;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -36,7 +36,7 @@
     transform: rotate(360deg);
   }
 }
-.card-text{
+.cardBody{
 
   background-color: dimgray;
 }
@@ -47,3 +47,10 @@
 /* .sss{
   min-height:min-content
 } */
+
+
+.pagination{
+  display: flex;
+  justify-content: center;
+  /* background-color: red; */
+}
