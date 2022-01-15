@@ -80,6 +80,11 @@ export const getPopular = (page=1) =>
      // w92, w154, w185, w342, w500, w780, original
 
      export const imgSize = 'w500' 
+     export const imgSizeTiny = 'w92'
+     export const imgSizeVerySmall = 'w185'
+     export const imgSizeSmall = 'w342'
+     export const imgSizeLarge = 'w780'
+     export const imgSizeOriginal = 'original'
 
 //Sizes: w300, w780, w1280, original
 const BACKDROP_SIZE = 'w1280';
@@ -104,6 +109,15 @@ export const getGenre = () =>
         console.log ('MovieInfo-----> ', recieved )
         return recieved 
      })
+
+     export const getMovieCredits = (id) =>
+     fetch(`${url}${id}/credits?api_key=${API_TMDB}&language=en-US`)
+       .then ((response)=>{
+           const recieved  = response.json() 
+           console.log ('Movie credits -----> ', recieved )
+           return recieved 
+        })
+   
 
      
      export const getExternalSites = (id) =>

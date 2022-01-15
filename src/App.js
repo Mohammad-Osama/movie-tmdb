@@ -3,7 +3,7 @@ import './App.css';
 import * as api from "./api"
 import { useState , useEffect } from 'react';
 import { createContext } from 'react';
- import { Container , Row , Col , Image , Card  , CardGroup  } from 'react-bootstrap'
+ import { Container , Row , Col , Image , Card  , CardGroup , Button   } from 'react-bootstrap'
   // import { Grid, Image } from 'semantic-ui-react'
   //import 'semantic-ui-css/semantic.min.css'
   //  import MovieThumb from './components/MovieThumb';
@@ -15,16 +15,22 @@ import {Client as Styletron} from 'styletron-engine-atomic';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {LightTheme, BaseProvider, styled} from 'baseui';
 import {StatefulInput} from 'baseui/input';
+import MovieThumb from './components/MovieThumb';
+
 
 
   /* export  const PopularMovies   = createContext();
   export  const   Genre  = createContext(); */
 function App() {
 
-  
+  /* const [latest , setLatest] = useState({}) */
  // const [popular , setPopular] = useState([])
  // const [genre , setGenre] = useState([])
-
+ /* const [genre , setGenre] = useState([])
+ async function getGenre (){
+  const genre= await api.getGenre()
+  setGenre(genre) 
+ } */
   /* async function getBooks (){
     const allBooks= await BooksAPI.getAll()
     this.setState({books : allBooks})
@@ -66,6 +72,31 @@ function App() {
                   };
                   }, []); */
 
+           /*  async function getLatest (){
+              const res= await api.getLatest()
+                setLatest(res)
+                 console.log("latest ---->"+JSON.stringify(res))
+                      }
+
+                  useEffect(() => { // topRated
+                 
+                    //  console.log("popular---->"+popular)
+                    getLatest ()
+                     return () => {
+                      
+                       setLatest({})              
+                     };
+                     }, []);
+                     useEffect(() => { // Genre
+                 
+                      //  console.log("popular---->"+popular)
+                       getGenre ()
+                       return () => {
+                        
+                         setGenre([])              
+                       };
+                       }, []);
+ */
 
                //   src={`${api.imgUrl}${api.imgSize}${x.poster_path}`}
                const engine = new Styletron();
@@ -75,6 +106,24 @@ function App() {
                   alignItems: 'center',
                   height: '100%',
                 });
+
+               /*  const findGenre = () => {
+                  //  console.log("findGenre start")
+                     let names=[]
+                      genre_ids?.forEach( (movieGenre)=> {
+                       // console.log("1st loop on x.genre ids ---->"+movieGenre)
+                        genre?.genres?.forEach((ids)=> {
+                          //  console.log("2nd loop on all ids ---->"+ids.name)
+                            if (movieGenre===ids.id) {
+                                names.push (ids.name)
+                                    }
+                                } )
+                            })
+                          //  console.log("final names  ---->"+names)
+                          //  console.log(typeof names)
+                            return names
+                            
+                  } */
              
   return (
     
@@ -86,6 +135,7 @@ function App() {
         <Container className="app">
 
             <NavBar/>
+           
             <Routes>
               <Route exact path='/' element={<Home />} />
               <Route exact path='/movie/:id' element={<Movie/>} />

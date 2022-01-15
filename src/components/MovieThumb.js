@@ -23,7 +23,7 @@ export default function MovieThumb(props) {
                     
                     <Card.Text>               
                          
-                    {props.genre.map((x)=>{
+                    {props?.genre?.map((x)=>{
                          
                        //  console.log("asdasdasdasd")
                         return<Button variant="outline-light"  size="sm"key={x}> {x}</Button>

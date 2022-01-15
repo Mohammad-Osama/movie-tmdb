@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container , Row , Col ,ToggleButtonGroup , ToggleButton , Image , Card  , CardGroup , Button } from 'react-bootstrap'
+import { Container , Row , Col ,ToggleButtonGroup , ToggleButton , Image , Card  , CardGroup , Button , ButtonGroup} from 'react-bootstrap'
 import * as api from "../api"
 import MovieThumb from './MovieThumb';
 import { useState , useEffect } from 'react';
@@ -7,6 +7,8 @@ import { useContext } from 'react'
 import {PopularMovies } from "../App.js"
 import {Genre } from "../App.js"
 import '../App.css';
+
+// import Latest from './Latest'
 
 // import Pagination from "react-js-pagination";
  // //import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,10 +22,11 @@ export default function Home() {
     const [movies , setMovies] = useState([])
     const [currentPage, setCurrentPage] = useState(movies.page=1);
     const [genre , setGenre] = useState([])
+    const [radioValue, setRadioValue] = useState('Popular');
 
      // const [topRated , setTopRated] = useState([])
 
-    const [values, setValues] = useState("Popular");
+    //  const [values, setValues] = useState("Popular");
    
    
     async function getTopRated (page){
@@ -66,22 +69,22 @@ export default function Home() {
 
 
             useEffect(() => { // PopularMovies
-              if  (values==="Popular")
+              if  (radioValue==="Popular")
                    {getPopular (currentPage)} 
-              else if (values==="Top Rated")
+              else if (radioValue==="Top Rated")
                    {getTopRated (currentPage)} 
-              else if (values==="Now Playing")
+              else if (radioValue==="Now Playing")
                    {getNowPlaying (currentPage)} 
-              else if (values==="Upcoming")
+              else if (radioValue==="Upcoming")
                    {getUpcoming (currentPage)} 
 
-                console.log("value ========> "+ values)
+                console.log("value ========> "+ radioValue)
              
                 return () => {
                   
                   setMovies([])              
                 };
-                }, [currentPage,values]);
+                }, [currentPage,radioValue]);
 
 
             useEffect(() => { // Genre
@@ -151,35 +154,40 @@ export default function Home() {
               /* const handleChange = (val) => {setValue()
                                              setValue(val);
                                         console.log("value ========> "+ value)} */
+
+                                        const radios = [
+                                          { name: 'Popular', value: 'Popular' },
+                                          { name: 'Top Rated', value: 'Top Rated' },
+                                          { name: 'Now Playing', value: 'Now Playing' },
+                                          { name: 'Upcoming', value: 'Upcoming' },
+                                        ];
                                             
 
     return (  <Container >
-      <Row>
-              <Col>
-                        <Button name="button1"  onClick={() => {
-                                  setValues("Popular")
-                                  
-                              }} >Popular</Button>
-                              <Button name="button1"  onClick={() => {
-                                setValues("Top Rated")
-                               
-                              }} >Top Rated</Button>
-
-                              <Button name="button1"  onClick={() => {
-                                setValues("Now Playing")
-                               
-                                }} >Now Playing</Button>
-                                 <Button name="button1"  onClick={() => {
-                                setValues("Upcoming")
-                               
-                                }} >Upcoming</Button>
+      
+      <Row xs={1} md={2}>
+              <Col >
+                              <ButtonGroup>
+                                   {radios.map((radio, idx) => (
+                                    <ToggleButton
+                                      key={idx}
+                                      id={`radio-${idx}`}
+                                      type="radio"
+                                      variant="outline-info"
+                                      name="radio"
+                                      value={radio.value}
+                                      checked={radioValue === radio.value}
+                                      onChange={(e) => {setRadioValue(e.currentTarget.value)
+                                                            console.log("asdasd----?"+radioValue)}}
+                                    >
+                                      {radio.name}
+                                    </ToggleButton>
+                        ))}
+                      </ButtonGroup>
                               
                               </Col>
-                               <Col>
-                                asdasd
-                                </Col>
-                       
-
+                              ...............
+                         
                               </Row>
                      
 
@@ -198,7 +206,7 @@ export default function Home() {
                     </Row>
                         <Row xs={1} md={2} className="g-4">
                             {movies.map( (x) => (
-                            <Col lg={3} key={x.id} >
+                            <Col lg={3} style={{display: "flex"}} key={x.id}  >
                                 <MovieThumb     
                                                 id={x.id}
                                                 poster_path={x.poster_path}
@@ -209,19 +217,11 @@ export default function Home() {
                                                 release_date={x.release_date}
                                                 genre = { findGenre(x)   }
                                                 
-
-                                
-                                
                                                                         />
                             </Col>
                             ))}
                     </Row>
-                    <Row>
-                    <Button></Button>
-                    </Row>
-                    
-
-
+        
                     </Container>
                 
     )
