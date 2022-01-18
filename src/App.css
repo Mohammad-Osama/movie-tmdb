@@ -36,10 +36,10 @@
     transform: rotate(360deg);
   }
 }
-.cardBody{
+/* .cardBody{
 
   background-color: dimgray;
-}
+} */
 .card-title{
 
   color:white;

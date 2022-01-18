@@ -16,6 +16,7 @@ import {Provider as StyletronProvider} from 'styletron-react';
 import {LightTheme, BaseProvider, styled} from 'baseui';
 import {StatefulInput} from 'baseui/input';
 import MovieThumb from './components/MovieThumb';
+import GenreList from './components/GenreList';
 
 
 
@@ -132,13 +133,15 @@ function App() {
     <StyletronProvider value={engine}>
     <BaseProvider theme={LightTheme}>
       <Centered>
-        <Container className="app">
+        <Container className="app" style={{padding: " 50px 50px"  }}>
 
             <NavBar/>
            
             <Routes>
               <Route exact path='/' element={<Home />} />
               <Route exact path='/movie/:id' element={<Movie/>} />
+              <Route exact path='/genre/:genre' element={<GenreList/>} />
+
             </Routes>
          
           </Container>

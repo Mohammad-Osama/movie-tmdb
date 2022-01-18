@@ -45,7 +45,7 @@ export default function Movie() {
             async function getMovieCredits (id){
               const credits= await api.getMovieCredits(id)
               setMovieCredits(credits)
-            console.log("credits  state  ---->"+JSON.stringify(credits))
+         //   console.log("credits  state  ---->"+JSON.stringify(credits))
                   }
 
 
@@ -72,7 +72,7 @@ export default function Movie() {
                 useEffect(() => {     
                
                  getMovieCredits (id)
-         console.log("credits  state  ---->"+JSON.stringify(MovieCredits.cast))
+        //  console.log("credits  state  ---->"+JSON.stringify(MovieCredits.cast))
 
                   return () => {
                     
@@ -132,21 +132,21 @@ export default function Movie() {
                                                                        /> */}
 
     return (
-         <Container > 
+         <Container style={{padding: " 50px 50px"}} > 
         <Row xs={1} md={2} className="g-4" >
                     
                         <Col >
-                         <Image  fluid src={`${api.imgUrl}${api.imgSize}${Movie?.poster_path}`}></Image>
+                         <Image  fluid src={`${api.imgUrl}${api.imgSizeLarge}${Movie?.poster_path}`}></Image>
                          {console.log(api.imgUrl+api.imgSize+Movie.poster_path)}
                         </Col>
                      <Col   >
                                     <Card   >
                                       <Card.Body>
-                                        <Card.Title style={{ color: 'black' }}>
+                                        <Card.Title as ="h1" style={{ color: 'black' }}>
                                             {Movie.title}
                                         </Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted"> {Movie.tagline} </Card.Subtitle>
-                                <Card.Text>
+                                <Card.Text as ="h5">
                                 {Movie.overview}
                                 </Card.Text>
                                 {Movie?.genres?.map((x)=>{
@@ -178,7 +178,7 @@ export default function Movie() {
                       <Card.Body>
                       {MovieCredits?.crew?.map( (x)=>{
                          if (x.job==="Director") 
-                            return <div>Director :  {x.name} </div>}     
+                            return <h5 key={x.credit_id} >Director :  {x.name} </h5>}     
                                                   )}
 
                       </Card.Body>
@@ -198,8 +198,8 @@ export default function Movie() {
                              
                             
                            return (   
-                            <Col lg={2} style={{display: "flex"}} key={x.id}  >
-                                      <PersonThumb           
+                            <Col lg={2} style={{display: "flex"}} key={x.credit_id}  >
+                                      <PersonThumb          
                                                 id = {x.id }
                                                 poster_path={x.profile_path} 
                                                 name = {x.name}
@@ -214,6 +214,7 @@ export default function Movie() {
                       </Row>
                                   </Accordion.Body>
                                 </Accordion.Item>
+                                <Button> sdsd</Button>
                                 <Accordion.Item eventKey="1">
                                   <Accordion.Header>Crew</Accordion.Header>
                                   <Accordion.Body>
@@ -223,7 +224,7 @@ export default function Movie() {
                              
                             
                            return (   
-                            <Col lg={2} style={{display: "flex"}} key={x.id}  >
+                            <Col lg={2} style={{display: "flex"}} key={x.credit_id}  >
                                       <PersonThumb           
                                                 id = {x.id }
                                                 poster_path={x.profile_path} 

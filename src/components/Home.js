@@ -28,7 +28,7 @@ export default function Home() {
 
     //  const [values, setValues] = useState("Popular");
    
-   
+    console.log("movies at home  ---->"+JSON.stringify(movies))
     async function getTopRated (page){
         const topRatedRes= await api.getTopRated(page)
         setMovies(topRatedRes.results)
@@ -52,7 +52,7 @@ export default function Home() {
     async function getPopular (page){
         const popular= await api.getPopular(page)
          setMovies(popular.results)
-         console.log("popular---->"+popular)
+       //  console.log("popular---->"+popular)
                }
 
         async function getUpcoming (page){
@@ -122,17 +122,25 @@ export default function Home() {
     const findGenre = (x) => {
       //  console.log("findGenre start")
          let names=[]
-         x.genre_ids.forEach( (movieGenre)=> {
-           // console.log("1st loop on x.genre ids ---->"+movieGenre)
+       //  let obj = {}
+         x.genre_ids?.forEach( (movieGenre)=> {
+            console.log("1st loop on x.genre ids ---->"+movieGenre)
             genre?.genres?.forEach((ids)=> {
-              //  console.log("2nd loop on all ids ---->"+ids.name)
+               console.log("2nd loop on all ids ---->"+ids.name)
                 if (movieGenre===ids.id) {
-                    names.push (ids.name)
-                        }
+                 //   obj[movieGenre] = ids.name;  
+               //  Object.assign(obj, {id: movieGenre , genre :ids.name});
+               let obj = Object.create({ id: movieGenre, genre: ids.name });
+                 names.push(obj)
+                }
+                
                     } )
+                    
                 })
-              //  console.log("final names  ---->"+names)
+                
+               console.log("final names  ---->"+JSON.stringify(names))
               //  console.log(typeof names)
+             
                 return names
                 
       }
@@ -193,7 +201,7 @@ export default function Home() {
 
 
                      <Row className= "pagination" >
-                     <Pagination size={SIZE.compact}
+                     <Pagination   size={SIZE.compact}
                                  numPages={500}
                                  currentPage={currentPage}
                                  onPageChange={({ nextPage }) => {
@@ -216,6 +224,7 @@ export default function Home() {
                                                 vote_count={x.vote_count}
                                                 release_date={x.release_date}
                                                 genre = { findGenre(x)   }
+                                                genre_ids={x.genre_ids}
                                                 
                                                                         />
                             </Col>

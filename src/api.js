@@ -127,3 +127,12 @@ export const getGenre = () =>
         console.log ('Imdb info-----> ', recieved )
         return recieved 
      })
+
+
+     export const getGenreList = (page=1,genre) => 
+     fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_TMDB}&language=en-US&sort_by=vote_average.desc&include_adult=true&include_video=false&page=${page}&with_genres=${genre}&with_watch_monetization_types=flatrate`)
+       .then ((response)=>{
+           const recieved  = response.json() 
+           console.log ('GenreList -----> ', recieved )
+           return recieved 
+        })

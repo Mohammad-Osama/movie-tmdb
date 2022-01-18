@@ -7,6 +7,8 @@ import * as api from "../api"
 
 
 export default function PersonThumb(props) {
+
+       //  console.log("person id ---- > " + props.id + "     name ---- > " + props.name )
     return (
             <Card style={{width: "100%"}}>
                     <Card.Img  variant="top" src={ props.poster_path 
