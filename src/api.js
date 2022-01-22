@@ -136,3 +136,19 @@ export const getGenre = () =>
            console.log ('GenreList -----> ', recieved )
            return recieved 
         })
+
+        export const getPersonInfo = (id) => 
+        fetch(`https://api.themoviedb.org/3/person/${id}?api_key=${API_TMDB}&language=en-US`)
+          .then ((response)=>{
+              const recieved  = response.json() 
+              console.log ('Person info  -----> ', recieved )
+              return recieved 
+           })
+
+           export const getPersonCredits = (id) => 
+        fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${API_TMDB}&language=en-US`)
+          .then ((response)=>{
+              const recieved  = response.json() 
+              console.log ('Person credits   -----> ', recieved )
+              return recieved 
+           })

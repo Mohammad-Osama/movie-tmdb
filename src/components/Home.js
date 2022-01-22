@@ -138,7 +138,7 @@ export default function Home() {
                     
                 })
                 
-               console.log("final names  ---->"+JSON.stringify(names))
+               console.log("final names  ---->"+(names))
               //  console.log(typeof names)
              
                 return names

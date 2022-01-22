@@ -17,6 +17,7 @@ import {LightTheme, BaseProvider, styled} from 'baseui';
 import {StatefulInput} from 'baseui/input';
 import MovieThumb from './components/MovieThumb';
 import GenreList from './components/GenreList';
+import Person from './components/Person';
 
 
 
@@ -141,6 +142,7 @@ function App() {
               <Route exact path='/' element={<Home />} />
               <Route exact path='/movie/:id' element={<Movie/>} />
               <Route exact path='/genre/:genre' element={<GenreList/>} />
+              <Route exact path='/person/:id' element={<Person/>} />
 
             </Routes>
          

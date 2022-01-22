@@ -18,7 +18,7 @@ export default function MovieThumb(props) {
                       </Link>
                   <Card.Body   style={{backgroundColor: ""}}    >
                     
-                    <Card.Title className="card-title">{props.title}</Card.Title>
+                    <Card.Title style={{color: "white"}}>{props.title}</Card.Title>
                    
                     
                     <Card.Text>               
@@ -37,7 +37,7 @@ export default function MovieThumb(props) {
                   </Card.Body>
                   <Card.Footer>
                     <Card.Text>
-                    <small className="text-muted" className="card-title">{props.release_date}</small>
+                    <small  style={{color: "white"}} >{props.release_date}</small>
                     </Card.Text>
                     <Badge pill bg="success">
                           {props.vote_average}  

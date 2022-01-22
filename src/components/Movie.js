@@ -9,7 +9,7 @@ import Slider from "react-slick";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import PersonThumb from './PersonThumb' 
-
+import { Link } from 'react-router-dom'
 
 
 export default function Movie() {
@@ -133,20 +133,20 @@ export default function Movie() {
 
     return (
          <Container style={{padding: " 50px 50px"}} > 
-        <Row xs={1} md={2} className="g-4" >
+        <Row xs={1} md={2} className="g-4"  >
                     
-                        <Col >
-                         <Image  fluid src={`${api.imgUrl}${api.imgSizeLarge}${Movie?.poster_path}`}></Image>
+                        <Col  >
+                         <Image   fluid src={`${api.imgUrl}${api.imgSizeLarge}${Movie?.poster_path}`}></Image>
                          {console.log(api.imgUrl+api.imgSize+Movie.poster_path)}
                         </Col>
-                     <Col   >
-                                    <Card   >
+                     <Col  style={{display: "flex"}}  >
+                                    <Card  bg="dark" >
                                       <Card.Body>
-                                        <Card.Title as ="h1" style={{ color: 'black' }}>
+                                        <Card.Title as ="h1" style={{ color: 'white' }}>
                                             {Movie.title}
                                         </Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted"> {Movie.tagline} </Card.Subtitle>
-                                <Card.Text as ="h5">
+                                <Card.Subtitle className="mb-2 text-muted" style={{ color: 'white' }}> {Movie.tagline} </Card.Subtitle>
+                                <Card.Text as ="h5" style={{ color: 'white' }}>
                                 {Movie.overview}
                                 </Card.Text>
                                 {Movie?.genres?.map((x)=>{
@@ -159,7 +159,7 @@ export default function Movie() {
                             
                             <Card.Body>
                     <Card.Text>
-                      <small  className="card-title" style={{ color: 'black' }}>Released : {Movie.release_date}</small>
+                      <small  className="card-title" style={{ color: 'white' }}>Released : {Movie.release_date}</small>
                     </Card.Text>
                     Rating : {' '}<Badge pill bg="success">
                             {Movie.vote_average}  
@@ -178,21 +178,22 @@ export default function Movie() {
                       <Card.Body>
                       {MovieCredits?.crew?.map( (x)=>{
                          if (x.job==="Director") 
-                            return <h5 key={x.credit_id} >Director :  {x.name} </h5>}     
+                            return <h5  style={{ color: 'white' }} key={x.credit_id} >Director : <Link to={`/person/${x.id}`}> {x.name}</Link> </h5>}     
                                                   )}
 
                       </Card.Body>
+                      <Card.Footer> sdsd </Card.Footer>
 
                             </Card>
         </Col>
                    
                     </Row>
                     <Row xs={1} md={2} className="g-4">
-                    <Accordion style={{width: "100%"}}  defaultActiveKey={['0']} alwaysOpen>
-                                <Accordion.Item eventKey="0">
+                    <Accordion style={{width: "100%" }}  defaultActiveKey={['0']} alwaysOpen>
+                                <Accordion.Item  eventKey="0">
                                   <Accordion.Header >Actors</Accordion.Header>
-                                  <Accordion.Body>
-                                  <Row xs={1} md={2} className="g-4">
+                                  <Accordion.Body style={{ backgroundColor: '#424242' }}>
+                                  <Row xs={1} md={2} className="g-4" >
                         {
                             MovieCredits?.cast?.slice(0,12).map( (x)=>{
                              
@@ -214,17 +215,20 @@ export default function Movie() {
                       </Row>
                                   </Accordion.Body>
                                 </Accordion.Item>
-                                <Button> sdsd</Button>
+
+                                <br/>
+
+
                                 <Accordion.Item eventKey="1">
-                                  <Accordion.Header>Crew</Accordion.Header>
-                                  <Accordion.Body>
-                                  <Row xs={1} md={2} className="g-4">
+                                  <Accordion.Header style={{ textAlign: 'center' }} >Crew</Accordion.Header>
+                                  <Accordion.Body style={{ backgroundColor: '#424242' }}>
+                                  <Row xs={1} md={2} className="g-4" >
                         {
                             MovieCredits?.crew?.slice(0,12).map( (x)=>{
                              
                             
                            return (   
-                            <Col lg={2} style={{display: "flex"}} key={x.credit_id}  >
+                            <Col lg={2} style={{display: "flex"}} style={{ color: 'red' }} key={x.credit_id}  >
                                       <PersonThumb           
                                                 id = {x.id }
                                                 poster_path={x.profile_path} 

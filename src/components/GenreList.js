@@ -55,17 +55,17 @@ export default function GenreList() {
                 
               
               {   List?.map((x)=>{
-                   return  (<Row style={{display: "flex"}} style={{padding: " 10px 10px"}}  >
-                    <Col style={{maxHeight: "200px"}}  lg={2}  >
+                   return  (<Row  xs={1} md={2} style={{padding: " 10px 10px"}}  >
+                    <Col  lg={2}  >
                     <Link to={`/movie/${x.id}`} >
-                        <Image style={{maxHeight: "100%"}} key ={x.id} src={ x.poster_path 
+                        <Image  fluid  key ={x.id} src={ x.poster_path 
                                         ? `${api.imgUrl}${api.imgSizeSmall}${x.poster_path}`
-                                          : "../no_image2.jpg" }></Image>
+                                          : "../no_image3.jpg" }></Image>
                         </Link>
                     
                    </Col>
-                   <Col  style={{maxHeight: "200px"}} lg={true} >
-                                    <Card   >
+                   <Col  style={{display: "flex"}} lg={10}  >
+                                    <Card style={{minWidth: "100%" }} >
                                       <Card.Body>
                                         <Card.Title as ="h6" style={{ color: 'black' }}>
                                             {x.title}
