@@ -20,8 +20,8 @@ import TvThumb from './TvThumb';
 
 export default function Home() {
   
-    const [movies , setMovies] = useState([])
-    const [currentPage, setCurrentPage] = useState(movies.page=1);
+    const [list , setList] = useState([])
+    const [currentPage, setCurrentPage] = useState(list.page=1);
     const [genre , setGenre] = useState([])
     const [radioValueMovies, setRadioValueMovies] = useState('Popular');
     const [radioValueTv, setRadioValueTv] = useState('Popular');
@@ -34,47 +34,60 @@ export default function Home() {
  //   console.log("movies at home  ---->"+JSON.stringify(movies))
     async function getTopRated (page){
         const topRatedRes= await api.getTopRated(page)
-        setMovies(topRatedRes.results)
+        setList(topRatedRes.results)
         //  console.log("rated---->"+JSON.stringify(topRated))
                }
 
                async function getLatest (){
                 const latest= await api.getLatest()
-                setMovies(latest.results)
+                setList(latest.results)
                 //  console.log("rated---->"+JSON.stringify(topRated))
                        }
 
 
                 async function getNowPlaying (page){
                 const NowPlaying= await api.getNowPlaying(page)
-                  setMovies(NowPlaying.results)
+                setList(NowPlaying.results)
                   //  console.log("NowPlaying ---->"+NowPlaying)
                         }
 
 
     async function getPopular (page){
         const popular= await api.getPopular(page)
-         setMovies(popular.results)
+          setList(popular.results)
        //  console.log("popular---->"+popular)
                }
 
         async function getUpcoming (page){
         const upcoming = await api.getUpcoming(page)
-          setMovies(upcoming.results)
+         setList(upcoming.results)
          //  console.log("upcoming---->"+popular)
                 }
 
                 async function getTvPopular (page){
                   const tvPopular = await api.getTvPopular(page)
-                    setMovies(tvPopular.results)
+                  setList(tvPopular.results)
                    //  console.log("upcoming---->"+popular)
                           }
 
                 async function getTvTopRated (page){
                   const tvTopRated = await api.getTvTopRated(page)
-                    setMovies(tvTopRated.results)
+                    setList(tvTopRated.results)
                   //  console.log("upcoming---->"+popular)
                           }
+
+                  async function getTvAiringToday (page){
+                    const tvAiringTday = await api.getTvAiringToday(page)
+                      setList(tvAiringTday.results)
+                    //  console.log("upcoming---->"+popular)
+                            }
+
+                    async function getTvOnTheAir (page){
+                      const tvOnTheAir = await api.getTvOnTheAir(page)
+                        setList(tvOnTheAir.results)
+                      //  console.log("upcoming---->"+popular)
+                              }
+          
 
                 
 
@@ -83,7 +96,7 @@ export default function Home() {
         const genreTv= await api.getGenreTv()
        // const finalGenre = genreMovies?.genres?.concat(genreTv?.genres?.filter(bo => genreMovies?.genres?.forEach(ao => ao.id != bo.id)));
       // const finalGenre = [ ...genreMovies.genres, ...genreTv.genres ]
-      const jointArray = [...genreMovies.genres, ...genreTv.genres]
+     // const jointArray = [...genreMovies.genres, ...genreTv.genres]
       /* const uniqueArray = jointArray.reduce((newArray, item) =>{
             if (newArray.includes(item)){
                       return newArray
@@ -117,15 +130,20 @@ export default function Home() {
                         {  if  (radioValueTv==="Popular")
                              { getTvPopular(currentPage)}
                            else if (radioValueTv==="Top Rated")
-                           {getTvTopRated(currentPage)}
-                        
+                             {getTvTopRated(currentPage)}
+                            else if (radioValueTv==="Airing Today") 
+                              {getTvAiringToday(currentPage)}
+                             else if (radioValueTv==="On The Air") 
+                                {getTvOnTheAir(currentPage)}
                         }
                 console.log("type ========> "+ typeValue)
-                console.log("radiovalue ========> "+ radioValueMovies)
+                console.log("radiovalue Movies  ========> "+ radioValueMovies)
+                console.log("radiovalue Tv  ========> "+ radioValueTv)
+
              
                 return () => {
                   
-                  setMovies([])
+                  setList([])
                               
                 };
                 }, [typeValue,currentPage,radioValueMovies,radioValueTv]);
@@ -223,6 +241,8 @@ export default function Home() {
                                         const radiosTv = [
                                           { name: 'Popular', value: 'Popular' },
                                           { name: 'Top Rated', value: 'Top Rated' },
+                                          { name: 'Airing Today', value: 'Airing Today' },
+                                          { name: 'On The Air', value: 'On The Air' }
                                           
                                         ];
               const handleChange = (val) => {setTypeValue("")
@@ -263,7 +283,7 @@ export default function Home() {
                                         value={radio.value}
                                         checked={radioValueMovies === radio.value}
                                         onChange={(e) => {setRadioValueMovies(e.currentTarget.value)
-                                                           setCurrentPage(movies.page=1)
+                                                           setCurrentPage(list.page=1)
                                                               }}
                                       >
                                         {radio.name}
@@ -280,7 +300,7 @@ export default function Home() {
                                         value={radio.value}
                                         checked={radioValueTv === radio.value}
                                         onChange={(e) => {setRadioValueTv(e.currentTarget.value)
-                                                          setCurrentPage(movies.page=1)
+                                                          setCurrentPage(list.page=1)
                                                               }}
                                       >
                                         {radio.name}
@@ -295,7 +315,7 @@ export default function Home() {
                               
                               <Col >                                          
                               <Chips value={typeValue} onChange={(e) => {setTypeValue(e) 
-                                                                          setCurrentPage(movies.page=1)                }}
+                                                                          setCurrentPage(list.page=1)                }}
                                   color="indigo"    variant="filled" spacing="md" size="xl"    
                                             >
                                   <Chip value="Movies">Movies</Chip>
@@ -321,7 +341,7 @@ export default function Home() {
                     
                     </Row>
                         <Row xs={1} md={2} className="g-4">
-                            {movies.map( (x) => (
+                            {list.map( (x) => (
                             <Col lg={3} style={{display: "flex"}} key={x.id}  >
                                { typeValue==="Movies" 
                                   ? <MovieThumb     
@@ -343,7 +363,7 @@ export default function Home() {
                                                 overview={x.overview}
                                                 vote_average={x.vote_average}
                                                 vote_count={x.vote_count}
-                                                release_date={x.release_date}
+                                                first_air_date={x.first_air_date}
                                                 genre = { findGenre(x)   }
                                                 genre_ids={x.genre_ids}
                                     

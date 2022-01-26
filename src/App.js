@@ -19,6 +19,7 @@ import MovieThumb from './components/MovieThumb';
 import GenreList from './components/GenreList';
 import Person from './components/Person';
 import PersonList from './components/PersonList';
+import Tv from './components/Tv'
 
 
 
@@ -146,6 +147,9 @@ function App() {
               <Route exact path='/person/:id' element={<Person/>} />
               <Route exact path='/movie/:id/cast' element={<PersonList/>} />
               <Route exact path='/movie/:id/crew' element={<PersonList/>} />
+
+              <Route exact path='/tv/:id' element={<Tv/>} />
+
             </Routes>
          
           </Container>

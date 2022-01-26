@@ -178,3 +178,27 @@ export const getGenreMovies = () =>
            console.log ('TV top rated -----> ', recieved )
            return recieved 
      })
+
+     export const getTvAiringToday = (page=1) =>
+     fetch(` https://api.themoviedb.org/3/tv/airing_today?api_key=${API_TMDB}&language=en-US&page=${page}`)
+       .then ((response)=>{
+         const recieved  = response.json() 
+           console.log ('TV airing today -----> ', recieved )
+           return recieved 
+     })
+
+     export const getTvOnTheAir = (page=1) =>
+     fetch(` https://api.themoviedb.org/3/tv/on_the_air?api_key=${API_TMDB}&language=en-US&page=${page}`)
+       .then ((response)=>{
+         const recieved  = response.json() 
+           console.log ('TV on the air  -----> ', recieved )
+           return recieved 
+     })
+
+     export const getTvInfo = (id) =>
+     fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_TMDB}&language=en-US`)
+       .then ((response)=>{
+         const recieved  = response.json() 
+           console.log ('TV info  -----> ', recieved )
+           return recieved 
+     })
