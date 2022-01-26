@@ -14,7 +14,7 @@ export default function PersonThumb(props) {
             <Card bg="dark" style={{width: "100%"}}>
                     <Link to={`/person/${props.id}`} >
                          <Card.Img  variant="top" src={ props.poster_path 
-                                                  ? `${api.imgUrl}${api.imgSizeSmall}${props.poster_path}`
+                                                  ? `${api.imgUrl}${api.imgSizeLarge}${props.poster_path}`
                                                   : "../no_image2.jpg" }  />
                      </Link>
 

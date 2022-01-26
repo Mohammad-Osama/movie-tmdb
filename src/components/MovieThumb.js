@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import { Container  , Button, Row , Col , Image , Card  , Badge , CardGroup } from 'react-bootstrap'
 
 export default function MovieThumb(props) {
-     console.log("genre_ids .MovieThumb===>"+props.genre_ids)
-    console.log("genre .MovieThumb===>"+JSON.stringify(props.genre))
+   //  console.log("genre_ids .MovieThumb===>"+props.genre_ids)
+  //  console.log("genre .MovieThumb===>"+JSON.stringify(props.genre))
 
     // console.log("props  to pass ===>"+JSON.stringify(props))
     return (

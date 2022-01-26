@@ -18,6 +18,7 @@ import {StatefulInput} from 'baseui/input';
 import MovieThumb from './components/MovieThumb';
 import GenreList from './components/GenreList';
 import Person from './components/Person';
+import PersonList from './components/PersonList';
 
 
 
@@ -143,7 +144,8 @@ function App() {
               <Route exact path='/movie/:id' element={<Movie/>} />
               <Route exact path='/genre/:genre' element={<GenreList/>} />
               <Route exact path='/person/:id' element={<Person/>} />
-
+              <Route exact path='/movie/:id/cast' element={<PersonList/>} />
+              <Route exact path='/movie/:id/crew' element={<PersonList/>} />
             </Routes>
          
           </Container>

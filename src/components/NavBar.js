@@ -1,11 +1,15 @@
 import React from 'react'
 import { Navbar , Container , Offcanvas , Nav , NavDropdown , Form , FormControl , Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 export default function NavBar() {
     return (
-        <Navbar bg="light" expand={false}>
+        <Navbar bg="dark" style={{ color: 'white' }} expand={false}>
   <Container fluid>
-    <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
+    <Navbar.Brand as={Link} exact to ="/"
+                  style={{ color: 'white'  , justifyContent:"center"}}>
+                  Home
+                  </Navbar.Brand>
     <Navbar.Toggle aria-controls="offcanvasNavbar" />
     <Navbar.Offcanvas
       id="offcanvasNavbar"

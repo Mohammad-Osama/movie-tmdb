@@ -93,12 +93,20 @@ const BACKDROP_SIZE = 'w1280';
 /* https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
 https://api.themoviedb.org/3/movie/" */
 
-export const getGenre = () =>
+export const getGenreMovies = () =>
   fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_TMDB}&language=en-US`)
     .then ((response)=>{
         const recieved  = response.json() 
-        console.log ('genres-----> ', recieved )
-        return recieved 
+        console.log ('genres Movies-----> ', recieved )
+        return recieved
+     })
+
+     export const getGenreTv = () =>
+  fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${API_TMDB}&language=en-US`)
+    .then ((response)=>{
+        const recieved  = response.json() 
+        console.log ('genres Tv-----> ', recieved )
+        return recieved
      })
 
       // const urlMovie = "https://api.themoviedb.org/3/movie/"
@@ -152,3 +160,21 @@ export const getGenre = () =>
               console.log ('Person credits   -----> ', recieved )
               return recieved 
            })
+
+
+
+           export const getTvPopular = (page=1) =>
+     fetch(` https://api.themoviedb.org/3/tv/popular?api_key=${API_TMDB}&language=en-US&page=${page}`)
+       .then ((response)=>{
+         const recieved  = response.json() 
+           console.log ('TV popular-----> ', recieved )
+           return recieved 
+     })
+
+     export const getTvTopRated = (page=1) =>
+     fetch(` https://api.themoviedb.org/3/tv/top_rated?api_key=${API_TMDB}&language=en-US&page=${page}`)
+       .then ((response)=>{
+         const recieved  = response.json() 
+           console.log ('TV top rated -----> ', recieved )
+           return recieved 
+     })

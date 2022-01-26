@@ -67,7 +67,7 @@ export default function Person() {
                                         </Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted" style={{ color: 'white' }}> 
                                             {Person?.also_known_as?.map((x=>{   
-                                                return <small  className="card-title" style={{ color: 'white' }}> {x} {' , '}</small>
+                                                return <small  className="card-title" style={{ color: 'white' }} key ={x}> {x} {' , '}</small>
 
 
                                 })    )      } </Card.Subtitle>
@@ -129,9 +129,10 @@ export default function Person() {
                             <ListGroup.Item
                               as="li"
                               className="d-flex justify-content-between align-items-start"
-                              style={{ backgroundColor: '#212529' }}
+                              style={{ backgroundColor: '#212529' , color: 'white' }}
+                              key={x.id}
                                  >
-                              <div className="ms-2 me-auto">
+                              <div className="ms-2 me-auto" style={{ color: 'white' }}>
                                 <Link to={`/movie/${x.id}`}>
                                  <div className="fw-bold">{x.title} ({x.release_date})</div>
                                 </Link>
@@ -164,7 +165,7 @@ export default function Person() {
                             </Accordion.Item>
                             <Accordion.Item eventKey="1">
                               <Accordion.Header>Crew </Accordion.Header>
-                              <Accordion.Body>
+                              <Accordion.Body style={{ backgroundColor: '#424242' }}>
                               <ListGroup as="ol" numbered>
                          {PersonCredits?.crew?.sort((a, b) =>{ return new Date(b.release_date) - new Date(a.release_date)}).map((x)=>{
                            return (   
@@ -172,11 +173,12 @@ export default function Person() {
                             <ListGroup.Item
                               as="li"
                               className="d-flex justify-content-between align-items-start"
-                              style={{ backgroundColor: '#212529' }}
+                              style={{ backgroundColor: '#212529', color: 'white'  }}
+                              key={x.id+x.job}
                                  >
-                              <div className="ms-2 me-auto">
+                              <div className="ms-2 me-auto" style={{ color: 'white' }} >
                                 <Link to={`/movie/${x.id}`}>
-                                 <div className="fw-bold">{x.title} ({x.release_date})</div>
+                                 <div className="fw-bold" >{x.title} ({x.release_date})</div>
                                 </Link>
                                   <div style={{ color: 'white' }}>
                                    {x.job}

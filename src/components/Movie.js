@@ -136,7 +136,9 @@ export default function Movie() {
         <Row xs={1} md={2} className="g-4"  >
                     
                         <Col  >
-                         <Image   fluid src={`${api.imgUrl}${api.imgSizeLarge}${Movie?.poster_path}`}></Image>
+                         <Image   fluid src={Movie?.poster_path
+                                        ? `${api.imgUrl}${api.imgSizeLarge}${Movie?.poster_path}`
+                                        : "../no_image3"}></Image>
                          {console.log(api.imgUrl+api.imgSize+Movie.poster_path)}
                         </Col>
                      <Col  style={{display: "flex"}}  >
@@ -212,6 +214,9 @@ export default function Movie() {
 
 
                         }
+                        <Link to={`/movie/${id}/cast`} state={{list :MovieCredits.cast}}>
+                        <Button>All Actors </Button>
+                        </Link>
                       </Row>
                                   </Accordion.Body>
                                 </Accordion.Item>
@@ -228,7 +233,7 @@ export default function Movie() {
                              
                             
                            return (   
-                            <Col lg={2} style={{display: "flex"}} style={{ color: 'red' }} key={x.credit_id}  >
+                            <Col lg={2} style={{display: "flex"}} key={x.credit_id}  >
                                       <PersonThumb           
                                                 id = {x.id }
                                                 poster_path={x.profile_path} 
@@ -241,6 +246,9 @@ export default function Movie() {
 
 
                         }
+                       <Link to={`/movie/${id}/crew`} state={{list :MovieCredits.crew}}>
+                        <Button>All Crew </Button>
+                        </Link>
                       </Row>
                                   </Accordion.Body>
                                 </Accordion.Item>
