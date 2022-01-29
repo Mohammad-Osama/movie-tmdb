@@ -145,8 +145,8 @@ function App() {
               <Route exact path='/movie/:id' element={<Movie/>} />
               <Route exact path='/genre/:genre' element={<GenreList/>} />
               <Route exact path='/person/:id' element={<Person/>} />
-              <Route exact path='/movie/:id/cast' element={<PersonList/>} />
-              <Route exact path='/movie/:id/crew' element={<PersonList/>} />
+              <Route exact path='/:id/cast' element={<PersonList/>} />
+              <Route exact path='/:id/crew' element={<PersonList/>} />
 
               <Route exact path='/tv/:id' element={<Tv/>} />
 

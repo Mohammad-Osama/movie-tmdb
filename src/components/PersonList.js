@@ -34,11 +34,13 @@ export default function PersonList(props) {
 
     return (
         <Container style={{padding: " 50px 50px"}} > 
-            <Link to={`/movie/${id}`}>
+            <Link to={location.state.type==="Movie"
+                      ? `/movie/${id}`
+                      : `/tv/${id}` }>
               <Button> Go back </Button>
             </Link>
                     <Row xs={1} md={2} className="g-4">
-                        {List.map( (x) => (
+                        {List?.map( (x) => (
                         <Col lg={3} style={{display: "flex"}} key={x.id}  >
                             <PersonThumb     
                                             id = {x.id }

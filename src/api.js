@@ -125,6 +125,15 @@ export const getGenreMovies = () =>
            console.log ('Movie credits -----> ', recieved )
            return recieved 
         })
+
+
+        export const getMovieImages = (id) =>
+        fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${API_TMDB}&language=null`)
+          .then ((response)=>{
+              const recieved  = response.json() 
+              console.log ('Movie images -----> ', recieved )
+              return recieved 
+           })
    
 
      
@@ -200,5 +209,13 @@ export const getGenreMovies = () =>
        .then ((response)=>{
          const recieved  = response.json() 
            console.log ('TV info  -----> ', recieved )
+           return recieved 
+     })
+
+     export const getTvCredits = (id) =>
+     fetch(` https://api.themoviedb.org/3/tv/${id}/credits?api_key=${API_TMDB}&language=en-US`)
+       .then ((response)=>{
+         const recieved  = response.json() 
+           console.log ('TV credits  -----> ', recieved )
            return recieved 
      })

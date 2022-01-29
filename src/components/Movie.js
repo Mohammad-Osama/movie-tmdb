@@ -1,12 +1,11 @@
 import React from 'react'
-import {Row , Card , Accordion ,  Image , Col , Button , Badge , Container} from "react-bootstrap"
+import {Row , Card , Accordion , Carousel ,  Image , Col , Button , Badge , Container} from "react-bootstrap"
 import { useLocation } from 'react-router-dom'
 import { useState , useEffect } from 'react'
 import { useParams } from 'react-router'
 import * as api from "../api"
 import { ImOnedrive } from 'react-icons/im'
 import Slider from "react-slick";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import PersonThumb from './PersonThumb' 
 import { Link } from 'react-router-dom'
@@ -16,10 +15,12 @@ export default function Movie() {
    // const location = useLocation()
      // console.log("location.state ===>"+JSON.stringify(location.key))
      const  {id}  = useParams();
-     //   console.log("movie id ---->"+id)
+         console.log("movie id ---->"+id)
       const [Movie, setMovie] = useState({})
       const [External, setExternal] = useState({})
       const [MovieCredits, setMovieCredits] = useState({})
+      const [MovieImages, setMovieImages] = useState({})
+
       console.log("movie state  ---->"+JSON.stringify(Movie))
      // console.log("External state  ---->"+JSON.stringify(External.url))
      // console.log("movie imdb ---->"+Movie.imdb_id)
@@ -48,6 +49,12 @@ export default function Movie() {
          //   console.log("credits  state  ---->"+JSON.stringify(credits))
                   }
 
+                  async function getMovieImages (id){
+                    const images= await api.getMovieImages(id)
+                       setMovieImages(images)
+               //   console.log("credits  state  ---->"+JSON.stringify(credits))
+                        }
+
 
            /*  geExternal (Movie.imdb_id)
             async function geExternal (id){
@@ -58,7 +65,7 @@ export default function Movie() {
 
             useEffect(() => {
                 console.log("movie id ---->"+id)
-                
+                console.clear();
                getMovie (id) 
               
                 return () => {
@@ -79,6 +86,17 @@ export default function Movie() {
                     setMovieCredits({})              
                   };
                   }, []);
+
+                  useEffect(() => {     
+               
+                    getMovieImages (id)
+           //  console.log("credits  state  ---->"+JSON.stringify(MovieCredits.cast))
+   
+                     return () => {
+                       
+                       setMovieImages({})              
+                     };
+                     }, []);
 
                 /* useEffect(() => {
             
@@ -154,7 +172,9 @@ export default function Movie() {
                                 {Movie?.genres?.map((x)=>{
                          
                         
-                        return<Button variant="outline-dark"  size="sm" key={x.id}>  {x.name}</Button>
+                        return <Link to={`/genre/${x.id}`} >
+                                <Button variant="outline-light"  size="sm" key={x.id}>  {x.name}</Button>
+                               </Link>
                     })}
                     
                             </Card.Body>
@@ -178,10 +198,13 @@ export default function Movie() {
 
                       </Card.Body> 
                       <Card.Body>
-                      {MovieCredits?.crew?.map( (x)=>{
-                         if (x.job==="Director") 
-                            return <h5  style={{ color: 'white' }} key={x.credit_id} >Director : <Link to={`/person/${x.id}`}> {x.name}</Link> </h5>}     
-                                                  )}
+                    
+                         
+                           <h5  style={{ color: 'white' }} >Director :{MovieCredits?.crew?.map( (x)=>{
+                              if (x.job==="Director") 
+                                 return <h5  style={{ color: 'white' }} key={x.credit_id} ><Link to={`/person/${x.id}`}> {x.name}</Link> </h5>}     
+                                                       )}  </h5>  
+                                                  
 
                       </Card.Body>
                       <Card.Footer> sdsd </Card.Footer>
@@ -214,7 +237,7 @@ export default function Movie() {
 
 
                         }
-                        <Link to={`/movie/${id}/cast`} state={{list :MovieCredits.cast}}>
+                        <Link to={`/${id}/cast`} state={{list :MovieCredits.cast , type :"Movie"} }>
                         <Button>All Actors </Button>
                         </Link>
                       </Row>
@@ -246,13 +269,34 @@ export default function Movie() {
 
 
                         }
-                       <Link to={`/movie/${id}/crew`} state={{list :MovieCredits.crew}}>
+                       <Link to={`/${id}/crew`} state={{list :MovieCredits.crew, type :"Movie"}}>
                         <Button>All Crew </Button>
                         </Link>
                       </Row>
                                   </Accordion.Body>
                                 </Accordion.Item>
                               </Accordion>
+                      </Row>
+                      <p>ghfghfghfgh</p> 
+
+                      <Row xs={1} md={2} className="g-4">
+                      <Carousel style={{width: "100%" }}> 
+                         {MovieImages?.backdrops?.map((x)=>{
+                         
+                        
+                         return <Carousel.Item>
+                                  <img
+                                    className="d-block w-100"
+                                    src={`${api.imgUrl}${api.imgSizeLarge}${x.file_path}`}
+                                    
+                                  />
+                         
+                                   </Carousel.Item>
+                     })}  
+                      
+                      </Carousel>
+
+
                       </Row>
 
 
