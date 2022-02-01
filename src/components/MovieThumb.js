@@ -26,8 +26,8 @@ export default function MovieThumb(props) {
                     {props?.genre?.map((x)=>{
                          
                        //  console.log("asdasdasdasd")
-                        return  <Link to={`/genre/${x.id}`} > 
-                                 <Button variant="outline-light"  size="sm"key={x.id}> {x.genre}</Button>
+                        return  <Link to={`/genre/${x.id}`}  key={x.id} > 
+                                 <Button variant="outline-light"  size="sm"> {x.genre}</Button>
                                </Link>
                     })}
                         

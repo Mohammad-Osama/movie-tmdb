@@ -30,3 +30,5 @@ ttt.js
 app.txt
 movie details.JPG
 src/components/button.js
+server/node_modules
+server/.env

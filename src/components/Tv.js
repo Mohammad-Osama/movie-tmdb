@@ -72,8 +72,8 @@ export default function Tv() {
                                 {tv?.genres?.map((x)=>{
                          
                         
-                        return <Link to={`/genre/${x.id}`} >
-                                 <Button variant="outline-light"  size="sm" key={x.id}>  {x.name}</Button> 
+                        return <Link to={`/genre/${x.id}`} key={x.id} >
+                                 <Button variant="outline-light"  size="sm" >  {x.name}</Button> 
                                </Link>
                     })}
                     

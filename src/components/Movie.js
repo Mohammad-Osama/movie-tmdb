@@ -65,7 +65,7 @@ export default function Movie() {
 
             useEffect(() => {
                 console.log("movie id ---->"+id)
-                console.clear();
+                
                getMovie (id) 
               
                 return () => {
@@ -172,8 +172,8 @@ export default function Movie() {
                                 {Movie?.genres?.map((x)=>{
                          
                         
-                        return <Link to={`/genre/${x.id}`} >
-                                <Button variant="outline-light"  size="sm" key={x.id}>  {x.name}</Button>
+                        return <Link to={`/genre/${x.id}`} key={x.id} >
+                                <Button variant="outline-light"  size="sm" >  {x.name}</Button>
                                </Link>
                     })}
                     
@@ -281,10 +281,10 @@ export default function Movie() {
 
                       <Row xs={1} md={2} className="g-4">
                       <Carousel style={{width: "100%" }}> 
-                         {MovieImages?.backdrops?.map((x)=>{
+                         {MovieImages?.backdrops?.map((x,index)=>{
                          
                         
-                         return <Carousel.Item>
+                         return <Carousel.Item key ={index}>
                                   <img
                                     className="d-block w-100"
                                     src={`${api.imgUrl}${api.imgSizeLarge}${x.file_path}`}

@@ -18,3 +18,23 @@ export default function Latest() {
                                       </Container>
     )
 }
+{ latest  &&  
+    <Row xs={1} md={2} className="g-4">
+      <Col lg={8}  >
+         <MovieThumb   id={latest.id}
+         poster_path={latest.poster_path}
+         title={latest.title}
+         overview={latest.overview}
+         vote_average={latest.vote_average}
+         vote_count={latest.vote_count}
+         release_date={latest.release_date}
+         
+        
+
+             />  
+             </Col>
+             </Row>
+             
+             
+             
+             }

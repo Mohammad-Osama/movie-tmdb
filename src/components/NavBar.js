@@ -6,7 +6,7 @@ export default function NavBar() {
     return (
         <Navbar bg="dark" style={{ color: 'white' }} expand={false}>
   <Container fluid>
-    <Navbar.Brand as={Link} exact to ="/"
+    <Navbar.Brand as={Link}  to ="/"
                   style={{ color: 'white'  , justifyContent:"center"}}>
                   Home
                   </Navbar.Brand>
