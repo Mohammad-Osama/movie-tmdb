@@ -200,7 +200,7 @@ export default function Home() {
                     
                 })
                 
-             //  console.log("final names  ---->"+JSON.stringify(names))
+            //  console.log("final names  ---->"+JSON.stringify(names))
               //  console.log(typeof names)
              
                 return names
@@ -365,8 +365,7 @@ export default function Home() {
                                                 vote_count={x.vote_count}
                                                 first_air_date={x.first_air_date}
                                                 genre = { findGenre(x)   }
-                                                genre_ids={x.genre_ids}
-                                    
+                                                genre_ids={x.genre_ids}                            
                                     
                                     
                                     

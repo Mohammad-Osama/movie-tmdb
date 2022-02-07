@@ -21,7 +21,7 @@ export default function PersonThumb(props) {
                     <Card.Body>
                             <Card.Title className="text-center" style={{ color: 'white' }}>{props.name}</Card.Title>
                             <Card.Text className="text-center" style={{ color: 'white' }}>
-                              {props.role}
+                              {props?.role}
                             </Card.Text>
                             
                         </Card.Body>

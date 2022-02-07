@@ -360,3 +360,12 @@ fetch(`/GenreTv`)
            console.log ('TV credits  -----> ', recieved )
            return recieved 
      }) */
+
+
+     export const multiSearch = (query) =>
+     fetch(`/multiSearch?query=${query}`)               
+       .then ((response)=>{
+           const recieved  = response.json() 
+           console.log ('multi Search  -----> ', recieved )
+           return recieved 
+        })

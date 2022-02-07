@@ -174,6 +174,14 @@ app.get('/TvCredits' , async (req,res)=>{
 });
 
 
+app.get('/multiSearch' , async (req,res)=>{
+  let query = req.query.query   
+  const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${API_TMDB}&language=en-US&query=${query}&page=1&include_adult=false`)
+       const data = await response.json()
+      res.send(data) 
+});
+
+
 
 
 /* app.post('/moviesPopular' , async (req,res)=>{

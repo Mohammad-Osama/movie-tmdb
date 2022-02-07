@@ -20,6 +20,7 @@ import GenreList from './components/GenreList';
 import Person from './components/Person';
 import PersonList from './components/PersonList';
 import Tv from './components/Tv'
+import Search from './components/Search'
 
 
 
@@ -147,6 +148,7 @@ function App() {
               <Route exact path='/person/:id' element={<Person/>} />
               <Route exact path='/:id/cast' element={<PersonList/>} />
               <Route exact path='/:id/crew' element={<PersonList/>} />
+              <Route exact path='/Search' element={<Search/>} />
 
               <Route exact path='/tv/:id' element={<Tv/>} />
 
