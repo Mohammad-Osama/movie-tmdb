@@ -106,19 +106,36 @@ export default function NavBar() {
             
       }
  */
-      const dataSearched =()=>{
+     /*  const dataSearched =()=>{   // working
         let results=[]
 
         list?.forEach( (x)=>{
             if (x.name)
-               { results.push( { value :x.name , id : x.id , type :x.media_type }   )  }
+               { results.push( { value :x.name , id : x.id , type :x.media_type , poster_path :x.poster_path }   )  }
             else {
-              results.push( { value :x.title , id : x.id , type :x.media_type }   )   }
+              results.push( { value :x.title , id : x.id , type :x.media_type , poster_path :x.poster_path }   )   }
           })     
           console.log ("data=====<"+JSON.stringify(results))
           return results
         
-  }
+  } */
+
+  const dataSearched =()=>{   // working
+    let results=[]
+
+    list?.forEach( (x)=>{
+        if (x.media_type==="movie")
+           { results.push( { value :x.title , id : x.id , type :x.media_type , poster_path :x.poster_path }   )  }
+        else if (x.media_type==="tv")
+          { results.push( { value :x.name , id : x.id , type :x.media_type , poster_path :x.poster_path }   )   }
+        else if (x.media_type==="person")
+          { results.push( { value :x.name , id : x.id , type :x.media_type , poster_path :x.profile_path }   )   }
+          
+      })     
+      console.log ("data=====<"+JSON.stringify(results))
+      return results
+    
+}
 
 
 
@@ -174,18 +191,32 @@ export default function NavBar() {
               <Col   xs={8} md={6}>
         
           
-              <Autocomplete 
+              <Autocomplete   transition="pop-top-left"
+                                transitionDuration={80}
+                                transitionTimingFunction="ease"
+                             size="lg"
+                             limit={10}
+                              placeholder="Search movie , tv show or a person ! "
                             data={dataSearched()}
                             ref={query}
-                            itemComponent={({ value, type, id,...others } , query ) =>
-                                           <div {...others} >                     
-                                            
-                                                 <div  >{value}</div>
-
-                                             </div>   
-                                          
-                                          
-                                          }
+                            itemComponent={forwardRef(({value, type, id,poster_path,...others}, query) => {
+                              return (
+                                  <div {...others}  ref={query}>                     
+                                                                      
+                                  <Group noWrap>
+                                      <Avatar src={`${api.imgUrl}${api.imgSizeSmall}${poster_path}`} />
+                          
+                                      <div>
+                                        <Text>{value}</Text>
+                                        <Text size="xs" color="dimmed">
+                                          {type}
+                                        </Text>
+                                      </div>
+                                    </Group>
+                          
+                                   </div>  
+                              )
+                            })}
                             onChange={() => {multiSearch( query.current.value)
                              
                            console.log( "query.current.value---- >> " + query.current.value) 
