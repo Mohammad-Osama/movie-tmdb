@@ -41,7 +41,7 @@ export const getLatest = () =>
 
 
 export const getPopular = (page=1) =>
-  fetch(`/moviesPopular?page=${page}`)               
+  fetch(`/api/moviesPopular?page=${page}`)               
     .then ((response)=>{
         const recieved  = response.json() 
         console.log ('Popular-----> ', recieved )

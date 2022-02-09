@@ -2,7 +2,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 const express = require("express");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -37,7 +37,7 @@ const url = "https://api.themoviedb.org/3/movie/"
 const API_TMDB = process.env.API_TMDB
 const API_IMDB = process.env.API_IMDB
 
-app.get('/moviesPopular' , async (req,res)=>{
+app.get('/api/moviesPopular' , async (req,res)=>{
   let page = req.query.page
   const response = await fetch(`${url}popular?api_key=${API_TMDB}&language=en-US&page=${page}`)
        const data = await response.json()
