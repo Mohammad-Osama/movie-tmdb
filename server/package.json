@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js" ,
-    "build": "cd .. && npm install && npm run build"
+    "build": "NPM_CONFIG_PRODUCTION=false cd .. && npm install && npm run build"
   },
   "dependencies": {
     "cors": "^2.8.5",
