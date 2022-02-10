@@ -49,7 +49,7 @@ export const getPopular = (page=1) =>
      })
 
      export const getNowPlaying = (page=1) =>
-  fetch(`/moviesNowPlaying?page=${page}`)               
+  fetch(`/api/moviesNowPlaying?page=${page}`)               
     .then ((response)=>{
         const recieved  = response.json() 
         console.log ('now_playing-----> ', recieved )
@@ -65,7 +65,7 @@ export const getPopular = (page=1) =>
      }) */
 
      export const getUpcoming = (page=1) =>
-  fetch(`/moviesUpcoming?page=${page}`)               
+  fetch(`/api/moviesUpcoming?page=${page}`)               
     .then ((response)=>{
         const recieved  = response.json() 
         console.log ('upcoming-----> ', recieved )
@@ -105,7 +105,7 @@ https://api.themoviedb.org/3/movie/" */
 
 
 export const getGenreMovies = () =>
-fetch(`/GenreMovies`)               
+fetch(`/api/GenreMovies`)               
   .then ((response)=>{
       const recieved  = response.json() 
       console.log ('genres Movies-----> ', recieved )
@@ -123,7 +123,7 @@ fetch(`/GenreMovies`)
 
 
      export const getGenreTv = () =>
-fetch(`/GenreTv`)               
+fetch(`/api/GenreTv`)               
   .then ((response)=>{
       const recieved  = response.json() 
       console.log ('genres Tv-----> ', recieved )
@@ -142,7 +142,7 @@ fetch(`/GenreTv`)
 
 
       export const getMovieInfo = (id) =>
-  fetch(`/movieInfo?id=${id}`)               
+  fetch(`/api/movieInfo?id=${id}`)               
     .then ((response)=>{
         const recieved  = response.json() 
         console.log ('MovieInfo-----> ', recieved )
@@ -159,7 +159,7 @@ fetch(`/GenreTv`)
 
 
      export const getMovieCredits = (id) =>
-     fetch(`/movieCredits?id=${id}`)               
+     fetch(`/api/movieCredits?id=${id}`)               
        .then ((response)=>{
            const recieved  = response.json() 
            console.log ('Movie credits-----> ', recieved )
@@ -176,7 +176,7 @@ fetch(`/GenreTv`)
 
 
         export const getMovieImages = (id) =>
-     fetch(`/movieImages?id=${id}`)               
+     fetch(`/api/movieImages?id=${id}`)               
        .then ((response)=>{
            const recieved  = response.json() 
            console.log ('Movie images-----> ', recieved )
@@ -194,7 +194,7 @@ fetch(`/GenreTv`)
 
 
            export const getExternalSites = (id) =>
-           fetch(`/movieExternalSites?id=${id}`)               
+           fetch(`/api/movieExternalSites?id=${id}`)               
              .then ((response)=>{
                  const recieved  = response.json() 
                  console.log ('Imdb info-----> ', recieved )
@@ -212,7 +212,7 @@ fetch(`/GenreTv`)
      }) */
 
      export const getGenreList = (page=1,genre) =>
-           fetch(`/GenreList?page=${page}?genre=${genre}`)               
+           fetch(`/api/GenreList?page=${page}?genre=${genre}`)               
              .then ((response)=>{
                  const recieved  = response.json() 
                  console.log ('GenreList-----> ', recieved )
@@ -231,7 +231,7 @@ fetch(`/GenreTv`)
 
 
         export const getPersonInfo = (id) =>
-           fetch(`/personInfo?id=${id}`)               
+           fetch(`/api/personInfo?id=${id}`)               
              .then ((response)=>{
                  const recieved  = response.json() 
                  console.log ('Person info-----> ', recieved )
@@ -248,7 +248,7 @@ fetch(`/GenreTv`)
 
 
            export const getPersonCredits = (id) =>
-           fetch(`/personMovieCredits?id=${id}`)               
+           fetch(`/api/personMovieCredits?id=${id}`)               
              .then ((response)=>{
                  const recieved  = response.json() 
                  console.log ('Person Movie credits-----> ', recieved )
@@ -265,7 +265,7 @@ fetch(`/GenreTv`)
 
 
            export const getTvPopular = (page=1) =>
-           fetch(`/TvPopular?page=${page}`)               
+           fetch(`/api/TvPopular?page=${page}`)               
              .then ((response)=>{
                  const recieved  = response.json() 
                  console.log ('TV popular  -----> ', recieved )
@@ -282,7 +282,7 @@ fetch(`/GenreTv`)
 
 
      export const getTvTopRated = (page=1) =>
-           fetch(`/TvTopRated?page=${page}`)               
+           fetch(`/api/TvTopRated?page=${page}`)               
              .then ((response)=>{
                  const recieved  = response.json() 
                  console.log ('TV top rated  -----> ', recieved )
@@ -298,7 +298,7 @@ fetch(`/GenreTv`)
      }) */
 
      export const getTvAiringToday = (page=1) =>
-           fetch(`/TvAiringToday?page=${page}`)               
+           fetch(`/api/TvAiringToday?page=${page}`)               
              .then ((response)=>{
                  const recieved  = response.json() 
                  console.log ('TV airing today -----> ', recieved )
@@ -314,7 +314,7 @@ fetch(`/GenreTv`)
      }) */
 
      export const getTvOnTheAir = (page=1) =>
-           fetch(`/TvOnTheAir?page=${page}`)               
+           fetch(`/api/TvOnTheAir?page=${page}`)               
              .then ((response)=>{
                  const recieved  = response.json() 
                  console.log ('TV on the air -----> ', recieved )
@@ -330,7 +330,7 @@ fetch(`/GenreTv`)
      }) */
 
      export const getTvInfo = (id) =>
-           fetch(`/TvInfo?id=${id}`)               
+           fetch(`/api/TvInfo?id=${id}`)               
              .then ((response)=>{
                  const recieved  = response.json() 
                  console.log ('TV info  -----> ', recieved )
@@ -346,7 +346,7 @@ fetch(`/GenreTv`)
      }) */
 
      export const getTvCredits = (id) =>
-           fetch(`/TvCredits?id=${id}`)               
+           fetch(`/api/TvCredits?id=${id}`)               
              .then ((response)=>{
                  const recieved  = response.json() 
                  console.log ('TV credits    -----> ', recieved )
@@ -363,7 +363,7 @@ fetch(`/GenreTv`)
 
 
      export const multiSearch = (query) =>
-     fetch(`/multiSearch?query=${query}`)               
+     fetch(`/api/multiSearch?query=${query}`)               
        .then ((response)=>{
            const recieved  = response.json() 
            console.log ('multi Search  -----> ', recieved )

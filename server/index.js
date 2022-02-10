@@ -24,7 +24,7 @@ app.get("/", (req,res) => {
  */
 if  (process.env.NODE_ENV === 'production')
     {app.use(express.static(path.join(__dirname, '..', 'build')));
-      app.get('/*', (req, res) => {
+      app.get('*', (req, res) => {
          res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
         }); }
 
@@ -44,14 +44,14 @@ app.get('/api/moviesPopular' , async (req,res)=>{
       res.send(data) 
 });
 
-app.get('/moviesTopRated' , async (req,res)=>{
+app.get('/api/moviesTopRated' , async (req,res)=>{
   let page = req.query.page
   const response = await fetch(`${url}top_rated?api_key=${API_TMDB}&language=en-US&page=${page}`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/moviesNowPlaying' , async (req,res)=>{
+app.get('/api/moviesNowPlaying' , async (req,res)=>{
   let page = req.query.page
   const response = await fetch(`${url}now_playing?api_key=${API_TMDB}&language=en-US&page=${page}`)
        const data = await response.json()
@@ -59,14 +59,14 @@ app.get('/moviesNowPlaying' , async (req,res)=>{
 });
 
 
-app.get('/moviesUpcoming' , async (req,res)=>{
+app.get('/api/moviesUpcoming' , async (req,res)=>{
   let page = req.query.page
   const response = await fetch(`${url}upcoming?api_key=${API_TMDB}&language=en-US&page=${page}`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/moviesLatest' , async (req,res)=>{
+app.get('/api/moviesLatest' , async (req,res)=>{
   const response = await fetch(`${url}latest?api_key=${API_TMDB}&language=en-US`)
        const data = await response.json()
       res.send(data) 
@@ -74,20 +74,20 @@ app.get('/moviesLatest' , async (req,res)=>{
 
 
 
-app.get('/GenreMovies' , async (req,res)=>{
+app.get('/api/GenreMovies' , async (req,res)=>{
   const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_TMDB}&language=en-US`)
        const data = await response.json()
       res.send(data) 
 });
 
 
-app.get('/GenreTv' , async (req,res)=>{
+app.get('/api/GenreTv' , async (req,res)=>{
   const response = await fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=${API_TMDB}&language=en-US`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/movieInfo' , async (req,res)=>{
+app.get('/api/movieInfo' , async (req,res)=>{
   let id = req.query.id
   const response = await fetch(`${url}${id}?api_key=${API_TMDB}&language=en-US`)
        const data = await response.json()
@@ -95,28 +95,28 @@ app.get('/movieInfo' , async (req,res)=>{
 });
 
 
-app.get('/movieCredits' , async (req,res)=>{
+app.get('/api/movieCredits' , async (req,res)=>{
   let id = req.query.id
   const response = await fetch(`${url}${id}/credits?api_key=${API_TMDB}&language=en-US`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/movieImages' , async (req,res)=>{
+app.get('/api/movieImages' , async (req,res)=>{
   let id = req.query.id
   const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${API_TMDB}&language=null`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/movieExternalSites' , async (req,res)=>{
+app.get('/api/movieExternalSites' , async (req,res)=>{
   let id = req.query.id
   const response = await fetch(`https://imdb-api.com/en/API/ExternalSites/${API_IMDB}/${id}`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/GenreList' , async (req,res)=>{
+app.get('/api/GenreList' , async (req,res)=>{
   let page = req.query.page
   let genre = req.query.genre
   const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_TMDB}&language=en-US&sort_by=vote_average.desc&include_adult=true&include_video=false&page=${page}&with_genres=${genre}&with_watch_monetization_types=flatrate`)
@@ -124,56 +124,56 @@ app.get('/GenreList' , async (req,res)=>{
       res.send(data) 
 });
 
-app.get('/personInfo' , async (req,res)=>{
+app.get('/api/personInfo' , async (req,res)=>{
   let id = req.query.id
   const response = await fetch(`https://api.themoviedb.org/3/person/${id}?api_key=${API_TMDB}&language=en-US`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/personMovieCredits' , async (req,res)=>{
+app.get('/api/personMovieCredits' , async (req,res)=>{
   let id = req.query.id
   const response = await fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${API_TMDB}&language=en-US`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/TvPopular' , async (req,res)=>{
+app.get('/api/TvPopular' , async (req,res)=>{
   let page = req.query.page
   const response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_TMDB}&language=en-US&page=${page}`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/TvTopRated' , async (req,res)=>{
+app.get('/api/TvTopRated' , async (req,res)=>{
   let page = req.query.page
   const response = await fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${API_TMDB}&language=en-US&page=${page}`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/TvAiringToday' , async (req,res)=>{
+app.get('/api/TvAiringToday' , async (req,res)=>{
   let page = req.query.page
   const response = await fetch(`https://api.themoviedb.org/3/tv/airing_today?api_key=${API_TMDB}&language=en-US&page=${page}`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/TvOnTheAir' , async (req,res)=>{
+app.get('/api/TvOnTheAir' , async (req,res)=>{
   let page = req.query.page
   const response = await fetch(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${API_TMDB}&language=en-US&page=${page}`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/TvInfo' , async (req,res)=>{
+app.get('/api/TvInfo' , async (req,res)=>{
   let id = req.query.id
   const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_TMDB}&language=en-US`)
        const data = await response.json()
       res.send(data) 
 });
 
-app.get('/TvCredits' , async (req,res)=>{
+app.get('/api/TvCredits' , async (req,res)=>{
   let id = req.query.id
   const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${API_TMDB}&language=en-US`)
        const data = await response.json()
@@ -181,7 +181,7 @@ app.get('/TvCredits' , async (req,res)=>{
 });
 
 
-app.get('/multiSearch' , async (req,res)=>{
+app.get('/api/multiSearch' , async (req,res)=>{
   let query = req.query.query   
   const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${API_TMDB}&language=en-US&query=${query}&page=1&include_adult=false`)
        const data = await response.json()
