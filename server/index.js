@@ -188,6 +188,27 @@ app.get('/api/multiSearch' , async (req,res)=>{
       res.send(data) 
 });
 
+app.get('/api/MoviesSearch' , async (req,res)=>{
+  let query = req.query.query  
+  const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_TMDB}&language=en-US&query=${query}&page=1&include_adult=false`)
+       const data = await response.json()
+      res.send(data) 
+});
+
+app.get('/api/TvSearch' , async (req,res)=>{
+  let query = req.query.query   
+  const response = await fetch(`https://api.themoviedb.org/3/search/tv?api_key=${API_TMDB}&language=en-US&query=${query}&page=1&include_adult=false`)
+       const data = await response.json()
+      res.send(data) 
+});
+
+app.get('/api/PersonSearch' , async (req,res)=>{
+  let query = req.query.query   
+  const response = await fetch(`https://api.themoviedb.org/3/search/person?api_key=${API_TMDB}&language=en-US&query=${query}&page=1&include_adult=false`)
+       const data = await response.json()
+      res.send(data) 
+});
+
 
 
 

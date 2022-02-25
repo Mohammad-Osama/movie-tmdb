@@ -369,3 +369,27 @@ fetch(`/api/GenreTv`)
            console.log ('multi Search  -----> ', recieved )
            return recieved 
         })
+
+        export const moviesSearch = (query) =>
+     fetch(`/api/MoviesSearch?query=${query}`)               
+       .then ((response)=>{
+           const recieved  = response.json() 
+           console.log ('movies Search  -----> ', recieved )
+           return recieved 
+        })
+
+        export const tvSearch = (query) =>
+        fetch(`/api/TvSearch?query=${query}`)               
+          .then ((response)=>{
+              const recieved  = response.json() 
+              console.log ('tv Search  -----> ', recieved )
+              return recieved 
+           })
+
+           export const personSearch = (query) =>
+        fetch(`/api/PersonSearch?query=${query}`)               
+          .then ((response)=>{
+              const recieved  = response.json() 
+              console.log ('person Search  -----> ', recieved )
+              return recieved 
+           })
