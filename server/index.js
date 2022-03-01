@@ -119,6 +119,7 @@ app.get('/api/movieExternalSites' , async (req,res)=>{
 app.get('/api/GenreList' , async (req,res)=>{
   let page = req.query.page
   let genre = req.query.genre
+  console.log(req.query)
   const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_TMDB}&language=en-US&sort_by=vote_average.desc&include_adult=true&include_video=false&page=${page}&with_genres=${genre}&with_watch_monetization_types=flatrate`)
        const data = await response.json()
       res.send(data) 
@@ -182,29 +183,37 @@ app.get('/api/TvCredits' , async (req,res)=>{
 
 
 app.get('/api/multiSearch' , async (req,res)=>{
-  let query = req.query.query   
-  const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${API_TMDB}&language=en-US&query=${query}&page=1&include_adult=false`)
+  const {query, page} = req.query 
+  console.log("page--->" + page)
+  console.log("query--->" +query)
+  console.log("req.query--->" +req.query)
+  
+  
+  const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${API_TMDB}&language=en-US&query=${query}&page=${page}&include_adult=false`)
        const data = await response.json()
       res.send(data) 
 });
 
 app.get('/api/MoviesSearch' , async (req,res)=>{
   let query = req.query.query  
-  const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_TMDB}&language=en-US&query=${query}&page=1&include_adult=false`)
+  let page = req.query.page   
+  const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_TMDB}&language=en-US&query=${query}&page=${page}&include_adult=false`)
        const data = await response.json()
       res.send(data) 
 });
 
 app.get('/api/TvSearch' , async (req,res)=>{
-  let query = req.query.query   
-  const response = await fetch(`https://api.themoviedb.org/3/search/tv?api_key=${API_TMDB}&language=en-US&query=${query}&page=1&include_adult=false`)
+  let query = req.query.query 
+  let page = req.query.page   
+  const response = await fetch(`https://api.themoviedb.org/3/search/tv?api_key=${API_TMDB}&language=en-US&query=${query}&page=${page}&include_adult=false`)
        const data = await response.json()
       res.send(data) 
 });
 
 app.get('/api/PersonSearch' , async (req,res)=>{
-  let query = req.query.query   
-  const response = await fetch(`https://api.themoviedb.org/3/search/person?api_key=${API_TMDB}&language=en-US&query=${query}&page=1&include_adult=false`)
+  let query = req.query.query  
+  let page = req.query.page 
+  const response = await fetch(`https://api.themoviedb.org/3/search/person?api_key=${API_TMDB}&language=en-US&query=${query}&page=${page}&include_adult=false`)
        const data = await response.json()
       res.send(data) 
 });

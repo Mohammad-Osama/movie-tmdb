@@ -21,7 +21,7 @@ export const getLatest = () =>
 
 
      export const getTopRated = (page=1) =>
-       fetch(`/moviesTopRated?page=${page}`)               
+       fetch(`/api/moviesTopRated?page=${page}`)               
        .then ((response)=>{
          const recieved  = response.json() 
          console.log ('toprated api-----> ', recieved )
@@ -361,33 +361,35 @@ fetch(`/api/GenreTv`)
            return recieved 
      }) */
 
-
-     export const multiSearch = (query) =>
-     fetch(`/api/multiSearch?query=${query}`)               
+    /*  export const getGenreList = (page=1,genre) =>
+     fetch(`/api/GenreList?page=${page}?genre=${genre}`)               
+        */
+     export const multiSearch = (query,page=1) =>
+     fetch(`/api/multiSearch?query=${query}&page=${page}`)               
        .then ((response)=>{
            const recieved  = response.json() 
            console.log ('multi Search  -----> ', recieved )
            return recieved 
         })
 
-        export const moviesSearch = (query) =>
-     fetch(`/api/MoviesSearch?query=${query}`)               
+        export const moviesSearch = (query,page=1) =>  //?query=${query}--->&<---page=${page}` , to separate the query parameters passed 
+     fetch(`/api/MoviesSearch?query=${query}&page=${page}`)               
        .then ((response)=>{
            const recieved  = response.json() 
            console.log ('movies Search  -----> ', recieved )
            return recieved 
         })
 
-        export const tvSearch = (query) =>
-        fetch(`/api/TvSearch?query=${query}`)               
+        export const tvSearch = (query,page=1) =>
+        fetch(`/api/TvSearch?query=${query}&page=${page}`)               
           .then ((response)=>{
               const recieved  = response.json() 
               console.log ('tv Search  -----> ', recieved )
               return recieved 
            })
 
-           export const personSearch = (query) =>
-        fetch(`/api/PersonSearch?query=${query}`)               
+           export const personSearch = (query,page=1) =>
+        fetch(`/api/PersonSearch?query=${query}&page=${page}`)               
           .then ((response)=>{
               const recieved  = response.json() 
               console.log ('person Search  -----> ', recieved )

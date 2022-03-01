@@ -315,7 +315,7 @@ export default function Home() {
                               
                               <Col >                                          
                               <Chips value={typeValue} onChange={(e) => {setTypeValue(e) 
-                                                                          setCurrentPage(list.page=1)                }}
+                                                                          setCurrentPage(list.page=1) }}
                                   color="indigo"    variant="filled" spacing="md" size="xl"    
                                             >
                                   <Chip value="Movies">Movies</Chip>

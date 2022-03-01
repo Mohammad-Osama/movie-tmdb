@@ -6,7 +6,7 @@ import * as api from "../api"
 import MovieThumb from './MovieThumb';
 import TvThumb from './TvThumb';
 import PersonThumb from "./PersonThumb"
-import { Accordion , Chips , Chip} from '@mantine/core';
+import { Accordion , Chips , Chip , Pagination} from '@mantine/core';
 // import '../App.css';
 
 
@@ -17,51 +17,52 @@ export default function Search() {
 
   const [search, setSearch] = useState('Multi');
 
+  const [currentPage, setCurrentPage] = useState(list.page=1);
 
   const query = useRef(null);
 
   const [genre , setGenre] = useState([])
 
-   const multiSearch = async (query)=>{
+   const multiSearch = async (query,page)=>{
 
     if (query === "" ||  query === undefined  || query ===null) { 
         setList([]) }
           else { 
-            const searchedItems = await api.multiSearch(query)               
+            const searchedItems = await api.multiSearch(query,page)               
                        setList(searchedItems.results)
                        console.log( "searched items in state " + JSON.stringify(list))
                 }              
                
             }
 
-            const moviesSearch = async (query)=>{
+            const moviesSearch = async (query,page)=>{
 
               if (query === "" ||  query === undefined  || query ===null) { 
                   setList([]) }
                     else { 
-                      const searchedItems = await api.moviesSearch(query)               
+                      const searchedItems = await api.moviesSearch(query,page)               
                                  setList(searchedItems.results)
                                  console.log( "searched items in state " + JSON.stringify(list))
                  }  
              }
 
-             const tvSearch = async (query)=>{
+             const tvSearch = async (query,page)=>{
 
               if (query === "" ||  query === undefined  || query ===null) { 
                   setList([]) }
                     else { 
-                      const searchedItems = await api.tvSearch(query)               
+                      const searchedItems = await api.tvSearch(query,page)               
                                  setList(searchedItems.results)
                                  console.log( "searched items in state " + JSON.stringify(list))
                  }  
              }
 
-             const personSearch = async (query)=>{
+             const personSearch = async (query,page)=>{
 
               if (query === "" ||  query === undefined  || query ===null) { 
                   setList([]) }
                     else { 
-                      const searchedItems = await api.personSearch(query)               
+                      const searchedItems = await api.personSearch(query,page)               
                                  setList(searchedItems.results)
                                  console.log( "searched items in state " + JSON.stringify(list))
                  }  
@@ -98,13 +99,13 @@ export default function Search() {
                // updateQuery(query.current.value)
                // console.log( "searched items in state in use effect" + JSON.stringify(list))
                 if  (search==="Multi")
-                  {multiSearch(query.current.value)}
+                  {multiSearch(query.current.value,currentPage)}
                   else if (search==="Movies")
-                  {moviesSearch(query.current.value)}
+                  {moviesSearch(query.current.value,currentPage)}
                   else if (search==="Tv")
-                  {tvSearch(query.current.value)}
+                  {tvSearch(query.current.value,currentPage)}
                   else if (search==="Person")
-                  {personSearch(query.current.value)}
+                  {personSearch(query.current.value,currentPage)}
                   
 
 
@@ -113,7 +114,7 @@ export default function Search() {
                     setList([])
                          
                  };
-                 }, [search,query]);
+                 }, [search,query,currentPage]);
 
 
                  useEffect(() => { // Genre
@@ -144,7 +145,7 @@ export default function Search() {
                               ?moviesSearch(query.current.value)
                               :search==="Tv"
                               ?multiSearch(query.current.value)
-                              :multiSearch(query.current.value)
+                              :personSearch(query.current.value)
                                 }}
                     />
                     
@@ -163,7 +164,7 @@ export default function Search() {
                 iconPosition="right">
                           <Accordion.Item   label="Advanced Search">
                           <Chips  value={search} onChange={(e) => {setSearch(e) 
-                                                                            }}
+                                                                    setCurrentPage(list.page=1)          }}
                               color="indigo"    variant="filled" spacing="md" size="xl" 
                                     >
                             <Chip value="Multi">Multi</Chip>
@@ -175,6 +176,22 @@ export default function Search() {
                       </Accordion>
 
             </Row>
+            <br></br>
+                <Row >
+
+                <Pagination total={500}
+                             size="lg"
+                             withEdges
+                             siblings={3}
+                             boundaries={3}
+                             page={currentPage}
+                             onChange={setCurrentPage}   
+                                                                   />
+
+
+                </Row>
+
+                   <br></br>         
               <Row xs={1} md={2} className="g-4">
                             { list && list.map( (x) => (
                                <Col lg={3} style={{display: "flex"}} key={x.id}  >
@@ -253,8 +270,20 @@ export default function Search() {
                                
                             }
                     </Row>
+                    <br></br>
+                    <Row>
+
+                      <Pagination total={500}
+                                  size="lg"
+                                  withEdges
+                                  siblings={3}
+                                  boundaries={3}
+                                  page={currentPage}
+                                  onChange={setCurrentPage}   
+                                                                        />
 
 
+                      </Row>           
 
         </Container>
 
