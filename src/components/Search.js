@@ -138,7 +138,7 @@ export default function Search() {
                         className="me-2"
                         aria-label="Search"
                         ref={query}
-                        onChange = {()=>{
+                        onChange = {()=>{ setCurrentPage(list.page=1)
                             search==="Multi"
                                ?multiSearch(query.current.value)
                               :search==="Movies"
