@@ -9,7 +9,8 @@ import Slider from "react-slick";
 import "react-multi-carousel/lib/styles.css";
 import PersonThumb from './PersonThumb' 
 import { Link } from 'react-router-dom'
-
+import { Text } from '@mantine/core';
+import CollectionThumb from './CollectionThumb'
 
 export default function Movie() {
    // const location = useLocation()
@@ -295,9 +296,37 @@ export default function Movie() {
                      })}  
                       
                       </Carousel>
+                      </Row>
+
+                      <Row xs={1} md={2} className="g-4" >
+                        <Text  color="white"
+                               align="center"
+                               size="xl"
+                               weight={700}
+                            
+
+                                               >
+                              Belongs to 
+                        </Text>
+                      </Row>
+                      <Row xs={1} md={2} className="g-4">
+                      <Col lg={3} style={{display: "flex"}} >
+                          <CollectionThumb    
+                                              poster_path={Movie?.belongs_to_collection?.poster_path} 
+                                              name = {Movie?.belongs_to_collection?.name} 
+                                              id = {Movie?.belongs_to_collection?.id}
+                                            
+                                            />
+
+                </Col>
+                        
+                        
+                        
 
 
                       </Row>
+
+                  
 
 
                     </Container>

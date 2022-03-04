@@ -21,6 +21,7 @@ import Person from './components/Person';
 import PersonList from './components/PersonList';
 import Tv from './components/Tv'
 import Search from './components/Search'
+import Collection from './components/Collection';
 
 
 
@@ -151,6 +152,7 @@ function App() {
               <Route exact path='/Search' element={<Search/>} />
 
               <Route exact path='/tv/:id' element={<Tv/>} />
+              <Route exact path='/collection/:id' element={<Collection/>} />
 
             </Routes>
          

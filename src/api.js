@@ -395,3 +395,12 @@ fetch(`/api/GenreTv`)
               console.log ('person Search  -----> ', recieved )
               return recieved 
            })
+
+
+           export const getCollection = (id) =>
+           fetch(`/api/Collection?id=${id}`)               
+             .then ((response)=>{
+                 const recieved  = response.json() 
+                 console.log ('Collection    -----> ', recieved )
+                 return recieved 
+              })
