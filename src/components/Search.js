@@ -6,6 +6,7 @@ import * as api from "../api"
 import MovieThumb from './MovieThumb';
 import TvThumb from './TvThumb';
 import PersonThumb from "./PersonThumb"
+import CollectionThumb from './CollectionThumb';
 import { Accordion , Chips , Chip , Pagination} from '@mantine/core';
 // import '../App.css';
 
@@ -68,6 +69,18 @@ export default function Search() {
                  }  
              }
 
+             const collectionSearch = async (query,page)=>{
+
+              if (query === "" ||  query === undefined  || query ===null) { 
+                  setList([]) }
+                    else { 
+                      const searchedItems = await api.collectionSearch(query,page)               
+                                 setList(searchedItems.results)
+                                 console.log( "searched items in state " + JSON.stringify(list))
+                 }  
+             }
+
+
 
             const findGenre = (x) => {
                    let names=[]
@@ -106,6 +119,8 @@ export default function Search() {
                   {tvSearch(query.current.value,currentPage)}
                   else if (search==="Person")
                   {personSearch(query.current.value,currentPage)}
+                  else if (search==="Collection")
+                  {collectionSearch(query.current.value,currentPage)}
                   
 
 
@@ -145,6 +160,8 @@ export default function Search() {
                               ?moviesSearch(query.current.value)
                               :search==="Tv"
                               ?multiSearch(query.current.value)
+                              :search==="Collection"
+                              ?collectionSearch(query.current.value)
                               :personSearch(query.current.value)
                                 }}
                     />
@@ -171,6 +188,7 @@ export default function Search() {
                             <Chip value="Movies">Movies</Chip>
                             <Chip value="Tv">Tv</Chip>
                             <Chip value="Person">Person</Chip>
+                            <Chip value="Collection">Collection</Chip>
                           </Chips>
                           </Accordion.Item>
                       </Accordion>
@@ -262,7 +280,13 @@ export default function Search() {
                                                           poster_path={x.profile_path} 
                                                           name = {x.name}                                                       
                                                             /> 
-
+                                                            :search ==="Collection" 
+                                                             ? <CollectionThumb
+                                                                        poster_path={x.poster_path} 
+                                                                        name = {x.name} 
+                                                                        id = {x.id}
+                                                             
+                                                                                />
                                                             :<div>error</div>
                                               }
                                   </Col>

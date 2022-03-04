@@ -184,9 +184,9 @@ app.get('/api/TvCredits' , async (req,res)=>{
 
 app.get('/api/multiSearch' , async (req,res)=>{
   const {query, page} = req.query 
-  console.log("page--->" + page)
+ /*  console.log("page--->" + page)
   console.log("query--->" +query)
-  console.log("req.query--->" +req.query)
+  console.log("req.query--->" +req.query) */
   
   
   const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${API_TMDB}&language=en-US&query=${query}&page=${page}&include_adult=false`)
@@ -224,6 +224,16 @@ app.get('/api/Collection' , async (req,res)=>{
        const data = await response.json()
       res.send(data) 
 });
+
+
+app.get('/api/CollectionSearch' , async (req,res)=>{
+  let query = req.query.query  
+  let page = req.query.page    
+  const response = await fetch(`https://api.themoviedb.org/3/search/collection?api_key=${API_TMDB}&language=en-US&query=${query}&page=${page}`)
+       const data = await response.json()
+      res.send(data) 
+});
+
 
 
 

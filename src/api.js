@@ -404,3 +404,12 @@ fetch(`/api/GenreTv`)
                  console.log ('Collection    -----> ', recieved )
                  return recieved 
               })
+
+
+              export const collectionSearch = (query,page=1) =>
+        fetch(`/api/CollectionSearch?query=${query}&page=${page}`)               
+          .then ((response)=>{
+              const recieved  = response.json() 
+              console.log ('Collection Search  -----> ', recieved )
+              return recieved 
+           })
